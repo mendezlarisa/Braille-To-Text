@@ -1,0 +1,70 @@
+<!doctype HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Braille-To-Text</title>
+   	<link href="brailletotext.css" rel="stylesheet">
+   	<link rel="stylesheet" type="text/css" href="bootstrap\dist\css\bootstrap.min.css">
+   	<link rel="stylesheet" type="text/css" href="cover.css">
+</head>
+<body>
+    <div class="site-wrapper">
+	    <div class="site-wrapper-inner">
+			<div class="container" style="background-color: #ffffff;  height: 600px;">
+				<div class="row">
+					<div class="col-md-3">
+						<img src="logo_brailletotext.png" id="logo_braille">
+					</div>
+					<div class="text-center col-md-5">
+						<h1 id="titulo">BRAILLE TO TEXT<br></h1>
+						<small id="subtitulo">SIMULADOR DE UNA M&Aacute;QUINA DE BRAILLE.</small>
+					</div>	
+					<div class="col-md-3">
+						<img src="logo_ucab.png" id="logo_ucab">			
+					</div>
+				</div>	
+				<hr>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="btn-group-vertical" style="width: 260px;font-family: Verdana;">
+							<button type="button" class="btn btn-default" style="text-align: left;">
+								<img src="bootstrap\png\users.png" style="margin-right: 5px;"> Qui&eacute;nes Somos?</button>
+							<button type="button" class="btn btn-default" style="text-align: left;">
+								<img src="bootstrap\png\file.png" style="margin-right: 20px;"> Sistema Braille</button>
+							<button type="button" class="btn btn-default" style="text-align: left;">
+								<img src="bootstrap\png\desktop.png" style="margin-right: 13px;"> Dispositivos Braille</button>
+							<button type="button" class="btn btn-default" style="text-align: left;">
+								<img src="bootstrap\png\book.png" style="margin-right: 18px;"> Manuales</button>
+						</div>
+						<hr>
+					</div>
+					<div class="col-md-8" style="width:860px; margin-bottom:20px;">
+						<div class="row">
+						    <div class="btn-group btn-group-justified">
+						      <a class="btn btn-warning" role="button"><img class="icono" src="bootstrap\png\bold.png"></a>
+						      <a class="btn btn-warning" role="button"><img class="icono" src="bootstrap\png\italic.png"></a>
+						      <a class="btn btn-warning" role="button"><img class="icono" src="bootstrap\png\underline.png"></a>
+						      <a class="btn btn-warning" role="button"><img class="icono" src="bootstrap\png\align_left.png"></a>
+						      <a class="btn btn-warning" role="button"><img class="icono" src="bootstrap\png\align_center.png"></a>
+						      <a class="btn btn-warning" role="button"><img class="icono" src="bootstrap\png\align_justify.png"></a>
+						      <a class="btn btn-warning" role="button"><img class="icono" src="bootstrap\png\align_right.png"></a>
+						      <a class="btn btn-warning" role="button"><img class="icono" src="bootstrap\png\list.png"></a>
+						      <a class="btn btn-warning" role="button"><img class="icono" src="bootstrap\png\save.png"></a>
+						      <a class="btn btn-warning" role="button"><img class="icono" src="bootstrap\png\folder_open.png"></a>
+						    </div>
+						</div>
+						<div class="row">
+							<textarea id="bloque" type="text" disabled></textarea>  
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+</body>
+<script src="jquery-2.1.0.min.js"></script>
+<script src="brailletotext.js"></script>
+    <script src="bootstrap\dist\js\bootstrap.min.js"></script>
+    <script src="bootstrap\docs\assets\js\docs.min.js"></script>
+</html>
