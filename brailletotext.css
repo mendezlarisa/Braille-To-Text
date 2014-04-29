@@ -1,42 +1,54 @@
-    @font-face { 
-        font-family: 'TektonPro-Bold'; 
-        src: url('TektonPro-Bold.ttf') 
-        format ('truetype'); 
-    }    
-    textarea{
-        width: 100%;
-        height: 350px;
-        font-family: Verdana;
-        overflow: auto;
-        resize:none;
-        border-radius: 5px;
-        background-color: #ffffff;
-        padding: 1em;
-    }
-    #logo_braille{
-    	height: 120px;
-    	width: 250px;	
-        margin-top: 10px;
-    }
-    #logo_ucab{
-        height: 57px;
-        width: 280px; 
-        margin-top: 40px; 
-        margin-left: 50px; 
-    }    
-    #titulo{
-        margin-top: 25px;
-        margin-left: 20px;
-        font-family: TektonPro-Bold;
-        font-size: 50px; 
-    }
-    #subtitulo{
-        font-size: 20px; 
-        margin-top:-20px; 
-        color: #585858;
-        font-family: TektonPro-Bold;
-    }
-    .icono{
-        width: 15px;
-        height: 15px;
-    }
+@font-face { 
+    font-family: 'TektonPro-Bold'; 
+    src: url('TektonPro-Bold.ttf') 
+    format ('truetype'); 
+}    
+textarea{
+    width: 100%;
+    height: 350px;
+    font-family: Verdana;
+    overflow: auto;
+    resize:none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 1em;
+}
+#logo_braille{
+	height: 120px;
+	width: 250px;	
+    margin-top: 10px;
+}
+#logo_ucab{
+    height: 57px;
+    width: 280px; 
+    margin-top: 40px; 
+    margin-left: 50px; 
+}    
+#titulo{
+    margin-top: 25px;
+    margin-left: 20px;
+    font-family: TektonPro-Bold;
+    font-size: 50px; 
+}
+#subtitulo{
+    font-size: 20px; 
+    margin-top:-20px; 
+    color: #585858;
+    font-family: TektonPro-Bold;
+}
+.icono{
+    width: 15px;
+    height: 15px;
+}
+.btn-simulador{
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    background-color: #1C1C1C;
+    color: #ffffff;
+    font-size: 16px;
+}
+/**{
+    border: solid 1px #000000;
+}*/
