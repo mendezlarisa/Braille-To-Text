@@ -13,11 +13,20 @@ $(document).ready(function() {
         };
         var mayus = false;        
         var number = false;
-        function cleartabla(){
+        var theDiv = document.getElementById("bloque");
+        var punto1 = document.getElementById("1");  
+        var punto2 = document.getElementById("2");  
+        var punto3 = document.getElementById("3");  
+        var punto4 = document.getElementById("4");  
+        var punto5 = document.getElementById("5");  
+        var punto6 = document.getElementById("6");  
+
+              
+        function ClearTabla(){
             for (var item in tabla)
                 tabla[item] = false;
         } 
-        function count(){
+        function Count(){
             var i = 0;
             for (var item in tabla)
                 if (tabla[item]){
@@ -25,10 +34,24 @@ $(document).ready(function() {
                 }
             return i;
         }
-        function clear(theDiv){
+        function Clear(theDiv){
             strng = theDiv.value;
             theDiv.value=strng.substring(0,strng.length-1)
         }
+        function Write(theDiv, texto){
+            theDiv.value+=texto;
+        }
+        function ChangeColor(puntoid){
+            move(puntoid)
+                .set('background-color', '#FF8000')
+                .duration(300)
+                .end(function(){
+                    move(puntoid)
+                        .set('background-color', '#1c1c1c')
+                        .end();
+                });
+        }
+
         $(document).keydown(function(event) {
             var keyCode = event.which;
             var keyChar = String.fromCharCode(keyCode);
@@ -37,417 +60,419 @@ $(document).ready(function() {
             if (tabla.hasOwnProperty(keyCode)) {
                 tabla[keyCode] = true;
             }else{
-                cleartabla();
+                ClearTabla();
             }
 
-            var theDiv = document.getElementById("bloque");
-
-            if(count()>5)             
-                cleartabla();
+            if(Count()>5)             
+                ClearTabla();
 
             for (var item in tabla){
                 if(tabla[item])
-                    console.log(count(),item);
+                    console.log(Count(),item);
             }
 
             for (var item in tabla){ 
                 //Numero                
-                if(count()==4 && tabla[83] && tabla[74] && tabla[75] && tabla[76]){
+                if(Count()==4 && tabla[83] && tabla[74] && tabla[75] && tabla[76]){
                     number = true;
-                    cleartabla();
+                    ClearTabla();
                 } 
                 //Mayuscula
-                if(count()==2 && tabla[74] && tabla[76]){
+                if(Count()==2 && tabla[74] && tabla[76]){
                     mayus = true;          
-                    cleartabla();                    
+                    ClearTabla();                    
                 }    
                 //Espacio            
                 if (tabla[72]){
-                    theDiv.value+=" ";
-                    cleartabla();
+                    Write(theDiv, " ");
+                    ClearTabla();
                 }
                 //Backspace
                 if (tabla[192]) {
-                    clear(theDiv);
-                    cleartabla();
+                    Clear(theDiv);
+                    ClearTabla();
                 }
                 //Salto de Linea
                 if (tabla[65]) {
-                    theDiv.value+="\n";
-                    cleartabla();
+                    Write(theDiv, "\n");
+                    ClearTabla();
                 }
                 //Tabulador
                 if (tabla[71]) {
-                    theDiv.value+="\t";
-                    cleartabla();
+                    Write(theDiv, "\t");
+                    ClearTabla();
                 }   
                 // //Punto
-                // if (tabla[83] && count()==1) {
+                // if (tabla[83] && Count()==1) {
                 //     theDiv.value+=".";
-                //     cleartabla();
+                //     ClearTabla();
                 // } 
                 // //Coma 
-                // if (tabla[68] && count()==1) {
+                // if (tabla[68] && Count()==1) {
                 //     theDiv.value+=",";
-                //     cleartabla();
+                //     ClearTabla();
                 // }          
                 //Guion
-                if(tabla[83] && tabla[76] && count()==2){
-                    theDiv.value+="-";                    
-                    cleartabla();
+                if(tabla[83] && tabla[76] && Count()==2){
+                    Write(theDiv, "-");                    
+                    ClearTabla();
                 }               
                 //Punto y Coma
-                if(tabla[83] && tabla[68] && count()==2){
-                    theDiv.value+=";";                    
-                    cleartabla();
+                if(tabla[83] && tabla[68] && Count()==2){
+                    Write(theDiv, ";");                    
+                    ClearTabla();
                 }
                 //Comillas                                
-                if(tabla[68] && tabla[83] && tabla[76] && count()==3){
-                    theDiv.value+="\"";
-                    cleartabla();
+                if(tabla[68] && tabla[83] && tabla[76] && Count()==3){
+                    Write(theDiv, "\"");
+                    ClearTabla();
                 }
 
                 //Letra F-f-6
-                if(tabla[70] && tabla[74] && tabla[68] && count()==3){
+                if(tabla[70] && tabla[74] && tabla[68] && Count()==3){
                     if(mayus){
-                        theDiv.value+="F";                    
+                        Write(theDiv, "F");                    
                         mayus = false;
                     }else if (number){
-                        theDiv.value+="6";
+                        Write(theDiv, "6");
                         number = false;
                     }
                     else
-                        theDiv.value+="f";
-                    cleartabla();
+                        Write(theDiv, "f");
+                    ClearTabla();
                 } 
                 
                 //Letra A-a-1
-                if (tabla[70] && count()==1){
+                if (tabla[70] && Count()==1){
                     if(mayus){
-                        theDiv.value+="A";
+                        Write(theDiv, "A");
                         mayus = false;
                     } else if (number){
-                        theDiv.value+="1";
+                        Write(theDiv, "1");
                         number = false;
                     }                   
-                    else
-                        theDiv.value+="a";
-                    cleartabla();
+                    else{
+                        Write(theDiv,"a");
+                        ChangeColor(punto1);
+                    }
+                    ClearTabla();
                 }
                 //Letra B-b-2
-                if(tabla[70] && tabla[68] && count()==2){
+                if(tabla[70] && tabla[68] && Count()==2){
                     if(mayus){
-                        theDiv.value+="B";                    
+                        Write(theDiv, "B");                    
                         mayus = false;
                     }else if (number){
-                        theDiv.value+="2";
+                        Write(theDiv, "2");
                         number = false;
                     }
                     else
-                        theDiv.value+="b";
-                    cleartabla();
+                        Write(theDiv, "b");
+                    ChangeColor(punto1);
+                    ChangeColor(punto2);
+                    ClearTabla();
                 }                 
                 //Letra C-c-3
-                if(tabla[70] && tabla[74] && count()==2){
+                if(tabla[70] && tabla[74] && Count()==2){
                     if(mayus){
-                        theDiv.value+="C";                    
+                        Write(theDiv, "C");                    
                         mayus = false;
                     }else if (number){
-                        theDiv.value+="3";
+                        Write(theDiv, "3");
                         number = false;
                     }
                     else
-                        theDiv.value+="c";
-                    cleartabla();
+                        Write(theDiv, "c");
+                    ClearTabla();
                 }
                 //Letra D-d-4                                  
-                if(tabla[70] && tabla[74] && tabla[75] && count()==3){
+                if(tabla[70] && tabla[74] && tabla[75] && Count()==3){
                     if(mayus){
-                        theDiv.value+="D";                    
+                        Write(theDiv, "D");                    
                         mayus = false;
                     }else if(number){
-                        theDiv.value+="4";
+                        Write(theDiv, "4");
                         number = false;
                     }
                     else
-                        theDiv.value+="d";
-                    cleartabla();
+                        Write(theDiv, "d");
+                    ClearTabla();
                 }
                 //Letra E-e-5
-                if(tabla[70] && tabla[75] && count()==2){
+                if(tabla[70] && tabla[75] && Count()==2){
                     if(mayus){
-                        theDiv.value+="E";                    
+                        Write(theDiv, "E");                    
                         mayus = false;
                     }else if (number){
-                        theDiv.value+="5";
+                        Write(theDiv, "5");
                         number = false;
                     }
                     else
-                        theDiv.value+="e";
-                    cleartabla();
+                        Write(theDiv, "e");
+                    ClearTabla();
                 }                          
                   //Letra G-g-7
-                if(tabla[70] && tabla[74] && tabla[68] && tabla[75] && count()==4){
+                if(tabla[70] && tabla[74] && tabla[68] && tabla[75] && Count()==4){
                     if(mayus){
-                        theDiv.value+="G";                    
+                        Write(theDiv, "G");                    
                         mayus = false;
                     }else if (number){
-                        theDiv.value+="7";
+                        Write(theDiv, "7");
                         number = false;
                     }
                     else
-                        theDiv.value+="g";
-                    cleartabla();
+                        Write(theDiv, "g");
+                    ClearTabla();
                 }  
                 //Letra H-h-8
-                if(tabla[70] && tabla[75] && tabla[68] && count()==3){
+                if(tabla[70] && tabla[75] && tabla[68] && Count()==3){
                     if(mayus){
-                        theDiv.value+="H";                    
+                        Write(theDiv, "H");                    
                         mayus = false;
                     }else if (number){
-                        theDiv.value+="8";
+                        Write(theDiv, "8");
                         number = false;
                     }
                     else
-                        theDiv.value+="h";
-                    cleartabla();
+                        Write(theDiv, "h");
+                    ClearTabla();
                 }                  
                 //Letra I-i-9
-                if(tabla[68] && tabla[74] && count()==2){
+                if(tabla[68] && tabla[74] && Count()==2){
                     if(mayus){
-                        theDiv.value+="I";                    
+                        Write(theDiv, "I");                    
                         mayus = false;
                     }else if (number){
-                        theDiv.value+="9";
+                        Write(theDiv, "9");
                         number = false;
                     }
                     else
-                        theDiv.value+="i";
-                    cleartabla();
+                        Write(theDiv, "i");
+                    ClearTabla();
                 }   
                 //Letra J-j-0
-                if(tabla[68] && tabla[75] && tabla[74] && count()==3){
+                if(tabla[68] && tabla[75] && tabla[74] && Count()==3){
                     if(mayus){
-                        theDiv.value+="J";                    
+                        Write(theDiv, "J");                    
                         mayus = false;
                     }else if (number){
-                        theDiv.value+="0";
+                        Write(theDiv, "0");
                         number = false;
                     }
                     else
-                        theDiv.value+="j";
-                    cleartabla();
+                        Write(theDiv, "j");
+                    ClearTabla();
                 }  
                 //Letra K-k
-                if(tabla[70] && tabla[83] && count()==2){
+                if(tabla[70] && tabla[83] && Count()==2){
                     if(mayus){
-                        theDiv.value+="J";                    
+                        Write(theDiv, "K");                    
                         mayus = false;
                     }else
-                        theDiv.value+="j";
-                    cleartabla();
+                        Write(theDiv, "k");
+                    ClearTabla();
                 } 
                 //Letra L-l
-                if(tabla[70] && tabla[68] && tabla[83] && count()==3){
+                if(tabla[70] && tabla[68] && tabla[83] && Count()==3){
                     if (mayus) {
-                        theDiv.value+="L"
+                        Write(theDiv, "L");
                         mayus = false;
                     }
                     else
-                        theDiv.value+="l";     
-                    cleartabla();
+                        Write(theDiv, "l");     
+                    ClearTabla();
                 }
                 //Letra M-m
-                 if(tabla[70] && tabla[74] && tabla[83] && count()==3){
+                 if(tabla[70] && tabla[74] && tabla[83] && Count()==3){
                     if(mayus){
-                        theDiv.value+="M";                    
+                        Write(theDiv, "M");                    
                         mayus = false;
                     }else
-                        theDiv.value+="m";
-                    cleartabla();
+                        Write(theDiv, "m");
+                    ClearTabla();
                 }
                 //Letra N-n
-                 if(tabla[70] && tabla[74] && tabla[75] && tabla[83] && count()==4){
+                 if(tabla[70] && tabla[74] && tabla[75] && tabla[83] && Count()==4){
                     if(mayus){
-                        theDiv.value+="N";                    
+                        Write(theDiv, "N");                    
                         mayus = false;
                     }else
-                        theDiv.value+="n";
-                    cleartabla();
+                        Write(theDiv, "n");
+                    ClearTabla();
                 }  
                  //Letra Ñ-ñ
-                if(tabla[70] && tabla[74] && tabla[75] && tabla[76] && tabla[68] && count()==5){
+                if(tabla[70] && tabla[74] && tabla[75] && tabla[76] && tabla[68] && Count()==5){
                     if(mayus){
-                        theDiv.value+="Ñ";                    
+                        Write(theDiv, "Ñ");                    
                         mayus = false;
                     }else
-                        theDiv.value+="ñ";
-                    cleartabla();
+                        Write(theDiv, "ñ");
+                    ClearTabla();
                 }                
                 //Letra O-o
-                 if(tabla[70] && tabla[75] && tabla[83] && count()==3){
+                 if(tabla[70] && tabla[75] && tabla[83] && Count()==3){
                     if(mayus){
-                        theDiv.value+="O";                    
+                        Write(theDiv, "O");                    
                         mayus = false;
                     }else
-                        theDiv.value+="o";
-                    cleartabla();
+                        Write(theDiv, "o");
+                    ClearTabla();
                 }
                 //Letra P-p
-                 if(tabla[70] && tabla[68] && tabla[83] && tabla[74] && count()==4){
+                 if(tabla[70] && tabla[68] && tabla[83] && tabla[74] && Count()==4){
                     if(mayus){
-                        theDiv.value+="P";                    
+                        Write(theDiv, "P");                    
                         mayus = false;
                     }else
-                        theDiv.value+="p";
-                    cleartabla();
+                        Write(theDiv, "p");
+                    ClearTabla();
                 }
                  //Letra Q-q
-                if(tabla[70] && tabla[68] && tabla[83] && tabla[75] && tabla[74] && count()==5){
+                if(tabla[70] && tabla[68] && tabla[83] && tabla[75] && tabla[74] && Count()==5){
                     if(mayus){
-                        theDiv.value+="Q";                    
+                        Write(theDiv, "Q");                    
                         mayus = false;
                     }else
-                        theDiv.value+="q";
-                    cleartabla();
+                        Write(theDiv, "q");
+                    ClearTabla();
                 }     
                 //Letra R-r
-                 if(tabla[70] && tabla[68] && tabla[83] && tabla[75] && count()==4){
+                 if(tabla[70] && tabla[68] && tabla[83] && tabla[75] && Count()==4){
                     if(mayus){
-                        theDiv.value+="R";                    
+                        Write(theDiv, "R");                    
                         mayus = false;
                     }else
-                        theDiv.value+="r";
-                    cleartabla();
+                        Write(theDiv, "r");
+                    ClearTabla();
                 }
                 //Letra S-s
-                 if(tabla[68] && tabla[83] && tabla[74] && count()==3){
+                 if(tabla[68] && tabla[83] && tabla[74] && Count()==3){
                     if(mayus){
-                        theDiv.value+="S";                    
+                        Write(theDiv, "S");                    
                         mayus = false;
                     }else
-                        theDiv.value+="s";
-                    cleartabla();
+                        Write(theDiv, "s");
+                    ClearTabla();
                 }
                 //Letra T-t
-                 if(tabla[68] && tabla[83] && tabla[74] && tabla[75] && count()==4){
+                 if(tabla[68] && tabla[83] && tabla[74] && tabla[75] && Count()==4){
                     if(mayus){
-                        theDiv.value+="T";                    
+                        Write(theDiv, "T");                    
                         mayus = false;
                     }else
-                        theDiv.value+="t";
-                    cleartabla();
+                        Write(theDiv, "t");
+                    ClearTabla();
                 }
                 //Letra U-u
-                 if(tabla[70] && tabla[83] && tabla[76] && count()==3){
+                 if(tabla[70] && tabla[83] && tabla[76] && Count()==3){
                     if(mayus){
-                        theDiv.value+="U";                    
+                        Write(theDiv, "U");                    
                         mayus = false;
                     }else
-                        theDiv.value+="u";
-                    cleartabla();
+                        Write(theDiv, "u");
+                    ClearTabla();
                 } 
                 //Letra V-v
-                 if(tabla[70] && tabla[68] && tabla[83] && tabla[76] && count()==4){
+                 if(tabla[70] && tabla[68] && tabla[83] && tabla[76] && Count()==4){
                     if(mayus){
-                        theDiv.value+="V";                    
+                        Write(theDiv, "V");                    
                         mayus = false;
                     }else
-                        theDiv.value+="v";
-                    cleartabla();
+                        Write(theDiv, "v");
+                    ClearTabla();
                 }
                 //Letra W-w
-                 if(tabla[68] && tabla[74] && tabla[75] && tabla[76] && count()==4){
+                 if(tabla[68] && tabla[74] && tabla[75] && tabla[76] && Count()==4){
                     if(mayus){
-                        theDiv.value+="W";                    
+                        Write(theDiv, "W");                    
                         mayus = false;
                     }else
-                        theDiv.value+="w";
-                    cleartabla();
+                        Write(theDiv, "w");
+                    ClearTabla();
                 }
                 //Letra X-x
-                 if(tabla[70] && tabla[74] && tabla[83] && tabla[76] && count()==4){
+                 if(tabla[70] && tabla[74] && tabla[83] && tabla[76] && Count()==4){
                     if(mayus){
-                        theDiv.value+="X";                    
+                        Write(theDiv, "X");                    
                         mayus = false;
                     }else
-                        theDiv.value+="x";
-                    cleartabla();
+                        Write(theDiv, "x");
+                    ClearTabla();
                 } 
                  //Letra Y-y
-                if(tabla[70] && tabla[83] && tabla[74] && tabla[75] && tabla[76] && count()==5){
+                if(tabla[70] && tabla[83] && tabla[74] && tabla[75] && tabla[76] && Count()==5){
                     if(mayus){
-                        theDiv.value+="Y";                    
+                        Write(theDiv, "Y");                    
                         mayus = false;
                     }else
-                        theDiv.value+="y";
-                    cleartabla();
+                        Write(theDiv, "y");
+                    ClearTabla();
                 } 
                 //Letra Z-z
-                 if(tabla[70] && tabla[83] && tabla[75] && tabla[76] && count()==4){
+                 if(tabla[70] && tabla[83] && tabla[75] && tabla[76] && Count()==4){
                     if(mayus){
-                        theDiv.value+="Z";                    
+                        Write(theDiv, "Z");                    
                         mayus = false;
                     }else
-                        theDiv.value+="z";
-                    cleartabla();
+                        Write(theDiv, "z");
+                    ClearTabla();
                 }     
                  //Letra Á-á
-                if(tabla[70] && tabla[68] && tabla[83] && tabla[75] && tabla[76] && count()==5){
+                if(tabla[70] && tabla[68] && tabla[83] && tabla[75] && tabla[76] && Count()==5){
                     if(mayus){
-                        theDiv.value+="Á";                    
+                        Write(theDiv, "Á");                    
                         mayus = false;
                     }else
-                        theDiv.value+="á";
-                    cleartabla();
+                        Write(theDiv, "á");
+                    ClearTabla();
                 }    
                 //Letra É-é
-                if(tabla[68] && tabla[83] && tabla[74] && tabla[76] && count()==4){
+                if(tabla[68] && tabla[83] && tabla[74] && tabla[76] && Count()==4){
                     if(mayus){
-                        theDiv.value+="É";                    
+                        Write(theDiv, "É");                    
                         mayus = false;
                     }else
-                        theDiv.value+="é";
-                    cleartabla();
+                        Write(theDiv, "é");
+                    ClearTabla();
                 }
                 //Letra Í-í
-                if(tabla[83] && tabla[74] && count()==2){
+                if(tabla[83] && tabla[74] && Count()==2){
                     if(mayus){
-                        theDiv.value+="Í";                    
+                        Write(theDiv, "Í");                    
                         mayus = false;
                     }else
-                        theDiv.value+="í";
-                    cleartabla();
+                        Write(theDiv, "í");
+                    ClearTabla();
                 } 
                 //Letra Ó-ó
-                if(tabla[83] && tabla[76] && tabla[74] && count()==3){
+                if(tabla[83] && tabla[76] && tabla[74] && Count()==3){
                     if(mayus){
-                        theDiv.value+="Ó";                    
+                        Write(theDiv, "Ó");                    
                         mayus = false;
                     }else
-                        theDiv.value+="ó";
-                    cleartabla();
+                        Write(theDiv, "ó");
+                    ClearTabla();
                 } 
                 //Letra Ú-ú
-                if(tabla[68] && tabla[83] && tabla[74] && tabla[75] && tabla[76] && count()==5){
+                if(tabla[68] && tabla[83] && tabla[74] && tabla[75] && tabla[76] && Count()==5){
                     if(mayus){
-                        theDiv.value+="Ú";                    
+                        Write(theDiv, "Ú");                    
                         mayus = false;
                     }else
-                        theDiv.value+="ú";
-                    cleartabla();
+                        Write(theDiv, "ú");
+                    ClearTabla();
                 }    
                 //Letra Signo de Interrogacion
                 //Letra Signa de Exclamacion
                 //Letra Parentesis Abierto
-                if(tabla[70] && tabla[68] && tabla[76] && count()==3){
-                    theDiv.value+="(";
-                    cleartabla();
+                if(tabla[70] && tabla[68] && tabla[76] && Count()==3){
+                    Write(theDiv, "(");
+                    ClearTabla();
                 } 
                 //Letra Parentesis Cerrado
-                if(tabla[74] && tabla[75] && tabla[83] && count()==3){
-                    theDiv.value+=")";
-                    cleartabla();
+                if(tabla[74] && tabla[75] && tabla[83] && Count()==3){
+                    Write(theDiv, ")");
+                    ClearTabla();
                 } 
             }
         });
