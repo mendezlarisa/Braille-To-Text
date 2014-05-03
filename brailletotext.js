@@ -13,13 +13,13 @@ $(document).ready(function() {
         };
         var mayus = false;        
         var number = false;
-        var theDiv = document.getElementById("bloque");
-        var punto1 = document.getElementById("1");  
-        var punto2 = document.getElementById("2");  
-        var punto3 = document.getElementById("3");  
-        var punto4 = document.getElementById("4");  
-        var punto5 = document.getElementById("5");  
-        var punto6 = document.getElementById("6");  
+        var textarea = document.getElementById("bloque");
+        var punto1 = document.getElementById("punto1");  
+        var punto2 = document.getElementById("punto2");  
+        var punto3 = document.getElementById("punto3");  
+        var punto4 = document.getElementById("punto4");  
+        var punto5 = document.getElementById("punto5");  
+        var punto6 = document.getElementById("punto6");  
 
               
         function ClearTabla(){
@@ -34,16 +34,16 @@ $(document).ready(function() {
                 }
             return i;
         }
-        function Clear(theDiv){
-            strng = theDiv.value;
-            theDiv.value=strng.substring(0,strng.length-1)
+        function Clear(textarea){
+            strng = textarea.value;
+            textarea.value=strng.substring(0,strng.length-1)
         }
-        function Write(theDiv, texto){
-            theDiv.value+=texto;
+        function Write(textarea, texto){
+            textarea.value+=texto;
         }
         function ChangeColor(puntoid){
             move(puntoid)
-                .set('background-color', '#FF8000')
+                .set('background-color', '#5BC0DE')
                 .duration(300)
                 .end(function(){
                     move(puntoid)
@@ -51,7 +51,26 @@ $(document).ready(function() {
                         .end();
                 });
         }
-
+        function Verify1(i){
+            if (Count()==1 && tabla[i])
+                return 1;
+        }
+        function Verify2(i,j){
+            if (Count()==2 && tabla[i] && tabla[j])
+                return 1;
+        }
+        function Verify3(i,j,k){
+            if (Count()==3 && tabla[i] && tabla[j] && tabla[k])
+                return 1;
+        }
+        function Verify4(i,j,k,w){
+            if (Count()==4 && tabla[i] && tabla[j] && tabla[k] && tabla[w])
+                return 1;
+        }
+        function Verify5(i,j,k,w,s){
+            if (Count()==5 && tabla[i] && tabla[j] && tabla[k] && tabla[w] && tabla[s])
+                return 1;
+        }
         $(document).keydown(function(event) {
             var keyCode = event.which;
             var keyChar = String.fromCharCode(keyCode);
@@ -73,407 +92,543 @@ $(document).ready(function() {
 
             for (var item in tabla){ 
                 //Numero                
-                if(Count()==4 && tabla[83] && tabla[74] && tabla[75] && tabla[76]){
+                if(Verify4(83,74,75,76)){
                     number = true;
                     ClearTabla();
+                    ChangeColor(punto3);
+                    ChangeColor(punto4);
+                    ChangeColor(punto5);
+                    ChangeColor(punto6);
                 } 
                 //Mayuscula
-                if(Count()==2 && tabla[74] && tabla[76]){
+                if(Verify2(74,76)){
                     mayus = true;          
-                    ClearTabla();                    
+                    ClearTabla(); 
+                    ChangeColor(punto4);
+                    ChangeColor(punto6);                   
                 }    
                 //Espacio            
-                if (tabla[72]){
-                    Write(theDiv, " ");
+                if (Verify1(72)){
+                    Write(textarea, " ");
                     ClearTabla();
                 }
                 //Backspace
-                if (tabla[192]) {
-                    Clear(theDiv);
+                if (Verify1(192)) {
+                    Clear(textarea);
                     ClearTabla();
                 }
                 //Salto de Linea
-                if (tabla[65]) {
-                    Write(theDiv, "\n");
+                if (Verify1(65)) {
+                    Write(textarea, "\n");
                     ClearTabla();
                 }
                 //Tabulador
-                if (tabla[71]) {
-                    Write(theDiv, "\t");
+                if (Verify1(71)) {
+                    Write(textarea, "\t");
                     ClearTabla();
                 }   
                 // //Punto
                 // if (tabla[83] && Count()==1) {
-                //     theDiv.value+=".";
+                //     textarea.value+=".";
                 //     ClearTabla();
                 // } 
                 // //Coma 
                 // if (tabla[68] && Count()==1) {
-                //     theDiv.value+=",";
+                //     textarea.value+=",";
                 //     ClearTabla();
                 // }          
                 //Guion
-                if(tabla[83] && tabla[76] && Count()==2){
-                    Write(theDiv, "-");                    
+                if(Verify2(83,76)){
+                    Write(textarea, "-");                    
                     ClearTabla();
+                    ChangeColor(punto3);
+                    ChangeColor(punto6);
                 }               
-                //Punto y Coma
-                if(tabla[83] && tabla[68] && Count()==2){
-                    Write(theDiv, ";");                    
-                    ClearTabla();
-                }
                 //Comillas                                
-                if(tabla[68] && tabla[83] && tabla[76] && Count()==3){
-                    Write(theDiv, "\"");
+                if(Verify3(68,83,76)){
+                    Write(textarea, "\"");
                     ClearTabla();
+                    ChangeColor(punto2);
+                    ChangeColor(punto3);
+                    ChangeColor(punto6);
                 }
 
                 //Letra F-f-6
-                if(tabla[70] && tabla[74] && tabla[68] && Count()==3){
+                if(Verify3(70,74,68)){
                     if(mayus){
-                        Write(theDiv, "F");                    
+                        Write(textarea, "F");                    
                         mayus = false;
                     }else if (number){
-                        Write(theDiv, "6");
+                        Write(textarea, "6");
                         number = false;
                     }
                     else
-                        Write(theDiv, "f");
+                        Write(textarea, "f");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto4);
+                    ChangeColor(punto2);
                 } 
                 
                 //Letra A-a-1
-                if (tabla[70] && Count()==1){
+                if (Verify1(70)){
                     if(mayus){
-                        Write(theDiv, "A");
+                        Write(textarea, "A");
                         mayus = false;
                     } else if (number){
-                        Write(theDiv, "1");
+                        Write(textarea, "1");
                         number = false;
                     }                   
-                    else{
-                        Write(theDiv,"a");
-                        ChangeColor(punto1);
-                    }
+                    else
+                        Write(textarea,"a");
+                    ChangeColor(punto1);
                     ClearTabla();
                 }
                 //Letra B-b-2
-                if(tabla[70] && tabla[68] && Count()==2){
+                if(Verify2(70,68)){
                     if(mayus){
-                        Write(theDiv, "B");                    
+                        Write(textarea, "B");                    
                         mayus = false;
                     }else if (number){
-                        Write(theDiv, "2");
+                        Write(textarea, "2");
                         number = false;
                     }
                     else
-                        Write(theDiv, "b");
+                        Write(textarea, "b");
                     ChangeColor(punto1);
                     ChangeColor(punto2);
                     ClearTabla();
                 }                 
                 //Letra C-c-3
-                if(tabla[70] && tabla[74] && Count()==2){
+                if(Verify2(70,74)){
                     if(mayus){
-                        Write(theDiv, "C");                    
+                        Write(textarea, "C");                    
                         mayus = false;
                     }else if (number){
-                        Write(theDiv, "3");
+                        Write(textarea, "3");
                         number = false;
                     }
                     else
-                        Write(theDiv, "c");
+                        Write(textarea, "c");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto4);
                 }
                 //Letra D-d-4                                  
-                if(tabla[70] && tabla[74] && tabla[75] && Count()==3){
+                if(Verify3(70,74,75)){
                     if(mayus){
-                        Write(theDiv, "D");                    
+                        Write(textarea, "D");                    
                         mayus = false;
                     }else if(number){
-                        Write(theDiv, "4");
+                        Write(textarea, "4");
                         number = false;
                     }
                     else
-                        Write(theDiv, "d");
+                        Write(textarea, "d");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto4);
+                    ChangeColor(punto5);
                 }
                 //Letra E-e-5
-                if(tabla[70] && tabla[75] && Count()==2){
+                if(Verify2(70,75)){
                     if(mayus){
-                        Write(theDiv, "E");                    
+                        Write(textarea, "E");                    
                         mayus = false;
                     }else if (number){
-                        Write(theDiv, "5");
+                        Write(textarea, "5");
                         number = false;
                     }
                     else
-                        Write(theDiv, "e");
+                        Write(textarea, "e");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto5);
                 }                          
                   //Letra G-g-7
-                if(tabla[70] && tabla[74] && tabla[68] && tabla[75] && Count()==4){
+                if(Verify4(70,74,68,75)){
                     if(mayus){
-                        Write(theDiv, "G");                    
+                        Write(textarea, "G");                    
                         mayus = false;
                     }else if (number){
-                        Write(theDiv, "7");
+                        Write(textarea, "7");
                         number = false;
                     }
                     else
-                        Write(theDiv, "g");
+                        Write(textarea, "g");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto2);
+                    ChangeColor(punto4);
+                    ChangeColor(punto5);
                 }  
                 //Letra H-h-8
-                if(tabla[70] && tabla[75] && tabla[68] && Count()==3){
+                if(Verify3(70,75,68)){
                     if(mayus){
-                        Write(theDiv, "H");                    
+                        Write(textarea, "H");                    
                         mayus = false;
                     }else if (number){
-                        Write(theDiv, "8");
+                        Write(textarea, "8");
                         number = false;
                     }
                     else
-                        Write(theDiv, "h");
+                        Write(textarea, "h");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto2);
+                    ChangeColor(punto5);
                 }                  
                 //Letra I-i-9
-                if(tabla[68] && tabla[74] && Count()==2){
+                if(Verify2(68,74)){
                     if(mayus){
-                        Write(theDiv, "I");                    
+                        Write(textarea, "I");                    
                         mayus = false;
                     }else if (number){
-                        Write(theDiv, "9");
+                        Write(textarea, "9");
                         number = false;
                     }
                     else
-                        Write(theDiv, "i");
+                        Write(textarea, "i");
                     ClearTabla();
+                    ChangeColor(punto2);
+                    ChangeColor(punto4);
                 }   
                 //Letra J-j-0
-                if(tabla[68] && tabla[75] && tabla[74] && Count()==3){
+                if(Verify3(68,75,74)){
                     if(mayus){
-                        Write(theDiv, "J");                    
+                        Write(textarea, "J");                    
                         mayus = false;
                     }else if (number){
-                        Write(theDiv, "0");
+                        Write(textarea, "0");
                         number = false;
                     }
                     else
-                        Write(theDiv, "j");
+                        Write(textarea, "j");
                     ClearTabla();
+                    ChangeColor(punto2);
+                    ChangeColor(punto4);
+                    ChangeColor(punto5);
                 }  
                 //Letra K-k
-                if(tabla[70] && tabla[83] && Count()==2){
+                if(Verify2(70,83)){
                     if(mayus){
-                        Write(theDiv, "K");                    
+                        Write(textarea, "K");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "k");
+                        Write(textarea, "k");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto3);
                 } 
                 //Letra L-l
-                if(tabla[70] && tabla[68] && tabla[83] && Count()==3){
+                if(Verify3(70,68,83)){
                     if (mayus) {
-                        Write(theDiv, "L");
+                        Write(textarea, "L");
                         mayus = false;
                     }
                     else
-                        Write(theDiv, "l");     
+                        Write(textarea, "l");     
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto2);
+                    ChangeColor(punto3);
                 }
                 //Letra M-m
-                 if(tabla[70] && tabla[74] && tabla[83] && Count()==3){
+                 if(Verify3(70,74,83)){
                     if(mayus){
-                        Write(theDiv, "M");                    
+                        Write(textarea, "M");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "m");
+                        Write(textarea, "m");
                     ClearTabla();
+                    ChangeColor(punto3);
+                    ChangeColor(punto1);
+                    ChangeColor(punto4);
                 }
                 //Letra N-n
-                 if(tabla[70] && tabla[74] && tabla[75] && tabla[83] && Count()==4){
+                 if(Verify4(70,74,75,83)){
                     if(mayus){
-                        Write(theDiv, "N");                    
+                        Write(textarea, "N");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "n");
+                        Write(textarea, "n");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto3);
+                    ChangeColor(punto4);
+                    ChangeColor(punto5);
                 }  
                  //Letra Ñ-ñ
-                if(tabla[70] && tabla[74] && tabla[75] && tabla[76] && tabla[68] && Count()==5){
+                if(Verify5(70,74,75,76,68)){
                     if(mayus){
-                        Write(theDiv, "Ñ");                    
+                        Write(textarea, "Ñ");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "ñ");
+                        Write(textarea, "ñ");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto2);
+                    ChangeColor(punto4);
+                    ChangeColor(punto5);
+                    ChangeColor(punto6);
                 }                
                 //Letra O-o
-                 if(tabla[70] && tabla[75] && tabla[83] && Count()==3){
+                 if(Verify3(70,75,83)){
                     if(mayus){
-                        Write(theDiv, "O");                    
+                        Write(textarea, "O");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "o");
+                        Write(textarea, "o");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto3);
+                    ChangeColor(punto5);
                 }
                 //Letra P-p
-                 if(tabla[70] && tabla[68] && tabla[83] && tabla[74] && Count()==4){
+                 if(Verify4(70,68,83,74)){
                     if(mayus){
-                        Write(theDiv, "P");                    
+                        Write(textarea, "P");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "p");
+                        Write(textarea, "p");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto2);
+                    ChangeColor(punto3);
+                    ChangeColor(punto4);
                 }
                  //Letra Q-q
-                if(tabla[70] && tabla[68] && tabla[83] && tabla[75] && tabla[74] && Count()==5){
+                if(Verify5(70,68,83,75,74)){
                     if(mayus){
-                        Write(theDiv, "Q");                    
+                        Write(textarea, "Q");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "q");
+                        Write(textarea, "q");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto2);
+                    ChangeColor(punto3);
+                    ChangeColor(punto4);
+                    ChangeColor(punto5);
                 }     
                 //Letra R-r
-                 if(tabla[70] && tabla[68] && tabla[83] && tabla[75] && Count()==4){
+                 if(Verify4(70,68,83,75)){
                     if(mayus){
-                        Write(theDiv, "R");                    
+                        Write(textarea, "R");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "r");
+                        Write(textarea, "r");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto2);
+                    ChangeColor(punto3);
+                    ChangeColor(punto5);
                 }
                 //Letra S-s
-                 if(tabla[68] && tabla[83] && tabla[74] && Count()==3){
+                 if(Verify3(68,83,74)){
                     if(mayus){
-                        Write(theDiv, "S");                    
+                        Write(textarea, "S");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "s");
+                        Write(textarea, "s");
                     ClearTabla();
+                    ChangeColor(punto2);
+                    ChangeColor(punto3);
+                    ChangeColor(punto4);
                 }
                 //Letra T-t
-                 if(tabla[68] && tabla[83] && tabla[74] && tabla[75] && Count()==4){
+                 if(Verify4(68,83,74,75)){
                     if(mayus){
-                        Write(theDiv, "T");                    
+                        Write(textarea, "T");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "t");
+                        Write(textarea, "t");
                     ClearTabla();
+                    ChangeColor(punto2);
+                    ChangeColor(punto3);
+                    ChangeColor(punto4);
+                    ChangeColor(punto5);
                 }
                 //Letra U-u
-                 if(tabla[70] && tabla[83] && tabla[76] && Count()==3){
+                 if(Verify3(70,83,76)){
                     if(mayus){
-                        Write(theDiv, "U");                    
+                        Write(textarea, "U");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "u");
+                        Write(textarea, "u");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto4);
+                    ChangeColor(punto6);
                 } 
                 //Letra V-v
-                 if(tabla[70] && tabla[68] && tabla[83] && tabla[76] && Count()==4){
+                 if(Verify4(70,68,83,76)){
                     if(mayus){
-                        Write(theDiv, "V");                    
+                        Write(textarea, "V");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "v");
+                        Write(textarea, "v");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto2);
+                    ChangeColor(punto3);
+                    ChangeColor(punto6);
                 }
                 //Letra W-w
-                 if(tabla[68] && tabla[74] && tabla[75] && tabla[76] && Count()==4){
+                 if(Verify4(68,74,75,76)){
                     if(mayus){
-                        Write(theDiv, "W");                    
+                        Write(textarea, "W");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "w");
+                        Write(textarea, "w");
                     ClearTabla();
+                    ChangeColor(punto2);
+                    ChangeColor(punto4);
+                    ChangeColor(punto5);
+                    ChangeColor(punto6);
                 }
                 //Letra X-x
-                 if(tabla[70] && tabla[74] && tabla[83] && tabla[76] && Count()==4){
+                 if(Verify4(70,74,83,76)){
                     if(mayus){
-                        Write(theDiv, "X");                    
+                        Write(textarea, "X");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "x");
+                        Write(textarea, "x");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto3);
+                    ChangeColor(punto4);
+                    ChangeColor(punto6);
                 } 
                  //Letra Y-y
-                if(tabla[70] && tabla[83] && tabla[74] && tabla[75] && tabla[76] && Count()==5){
+                if(Verify5(70,83,74,75,76)){
                     if(mayus){
-                        Write(theDiv, "Y");                    
+                        Write(textarea, "Y");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "y");
+                        Write(textarea, "y");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto6);
+                    ChangeColor(punto3);
+                    ChangeColor(punto4);
+                    ChangeColor(punto5);
                 } 
                 //Letra Z-z
-                 if(tabla[70] && tabla[83] && tabla[75] && tabla[76] && Count()==4){
+                 if(Verify4(70,83,75,76)){
                     if(mayus){
-                        Write(theDiv, "Z");                    
+                        Write(textarea, "Z");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "z");
+                        Write(textarea, "z");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto3);
+                    ChangeColor(punto6);
+                    ChangeColor(punto5);
                 }     
                  //Letra Á-á
-                if(tabla[70] && tabla[68] && tabla[83] && tabla[75] && tabla[76] && Count()==5){
+                if(Verify5(70,68,83,75,76)){
                     if(mayus){
-                        Write(theDiv, "Á");                    
+                        Write(textarea, "Á");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "á");
+                        Write(textarea, "á");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto2);
+                    ChangeColor(punto3);
+                    ChangeColor(punto6);
+                    ChangeColor(punto5);
                 }    
                 //Letra É-é
-                if(tabla[68] && tabla[83] && tabla[74] && tabla[76] && Count()==4){
+                if(Verify4(68,83,74,76)){
                     if(mayus){
-                        Write(theDiv, "É");                    
+                        Write(textarea, "É");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "é");
+                        Write(textarea, "é");
                     ClearTabla();
+                    ChangeColor(punto2);
+                    ChangeColor(punto3);
+                    ChangeColor(punto4);
+                    ChangeColor(punto6);
                 }
                 //Letra Í-í
-                if(tabla[83] && tabla[74] && Count()==2){
+                if(Verify2(83,74)){
                     if(mayus){
-                        Write(theDiv, "Í");                    
+                        Write(textarea, "Í");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "í");
+                        Write(textarea, "í");
                     ClearTabla();
+                    ChangeColor(punto3);
+                    ChangeColor(punto4);
                 } 
                 //Letra Ó-ó
-                if(tabla[83] && tabla[76] && tabla[74] && Count()==3){
+                if(Verify3(83,76,74)){
                     if(mayus){
-                        Write(theDiv, "Ó");                    
+                        Write(textarea, "Ó");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "ó");
+                        Write(textarea, "ó");
                     ClearTabla();
+                    ChangeColor(punto3);
+                    ChangeColor(punto4);
+                    ChangeColor(punto6);
                 } 
                 //Letra Ú-ú
-                if(tabla[68] && tabla[83] && tabla[74] && tabla[75] && tabla[76] && Count()==5){
+                if(Verify5(68,83,74,75,76)){
                     if(mayus){
-                        Write(theDiv, "Ú");                    
+                        Write(textarea, "Ú");                    
                         mayus = false;
                     }else
-                        Write(theDiv, "ú");
+                        Write(textarea, "ú");
                     ClearTabla();
+                    ChangeColor(punto2);
+                    ChangeColor(punto3);
+                    ChangeColor(punto4);
+                    ChangeColor(punto5);
+                    ChangeColor(punto6);
                 }    
+                //Letra Ü-ü
+                if(Verify4(70,68,75,76)){
+                    if(mayus){
+                        Write(textarea, "Ü");                    
+                        mayus = false;
+                    }else
+                        Write(textarea, "ü");
+                    ClearTabla();
+                    ChangeColor(punto2);
+                    ChangeColor(punto1);
+                    ChangeColor(punto5);
+                    ChangeColor(punto6);
+                } 
                 //Letra Signo de Interrogacion
                 //Letra Signa de Exclamacion
                 //Letra Parentesis Abierto
-                if(tabla[70] && tabla[68] && tabla[76] && Count()==3){
-                    Write(theDiv, "(");
+                if(Verify3(70,68,76)){
+                    Write(textarea, "(");
                     ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto2);
+                    ChangeColor(punto3);
                 } 
                 //Letra Parentesis Cerrado
-                if(tabla[74] && tabla[75] && tabla[83] && Count()==3){
-                    Write(theDiv, ")");
+                if(Verify3(73,75,83)){
+                    Write(textarea, ")");
                     ClearTabla();
+                    ChangeColor(punto4);
+                    ChangeColor(punto5);
+                    ChangeColor(punto3);
                 } 
+                // //Punto y Coma
+                // if(Verify2(83,68)){
+                //     Write(textarea, ";");                    
+                //     ClearTabla();
+                //     ChangeColor(punto3);
+                //     ChangeColor(punto2);
+                // }
             }
         });
     });
