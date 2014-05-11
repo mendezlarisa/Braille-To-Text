@@ -9,10 +9,16 @@ $(document).ready(function() {
             83: false, //S - 3
             74: false, //J - 4
             75: false, //K - 5
-            76: false  //L - 6
+            76: false,  //L - 6
+            90: false   //Z
+            88: false   //X
+            67: false   //C
         };
         var mayus = false;        
         var number = false;
+        var negrita = false;
+        var cursiva = false;
+        var subrayado = false;
         var textarea = document.getElementById("bloque");
         var punto1 = document.getElementById("punto1");  
         var punto2 = document.getElementById("punto2");  
@@ -39,7 +45,14 @@ $(document).ready(function() {
             textarea.value=strng.substring(0,strng.length-1)
         }
         function Write(textarea, texto){
-            textarea.value+=texto;
+            if(negrita & !cursiva & !subrayado)
+                textarea.innerHTML+="<b>"+texto+"</b>"
+            else if(cursiva & !negrita & !subrayado)
+                textarea.innerHTML+="<i>"+texto+"</i>"
+            else if(subrayado & !cursiva & !negrita)
+                textarea.innerHTML+="<u>"+texto+"</u>"
+            else
+                textarea.innerHTML+=texto;
         }
         function ChangeColor(puntoid){
             move(puntoid)
@@ -126,7 +139,25 @@ $(document).ready(function() {
                 if (Verify1(71)) {
                     Write(textarea, "\t");
                     ClearTabla();
-                }   
+                }
+                if (Verify1(90)) {
+                    if(!negrita)
+                        negrita=true
+                    else 
+                        negrita=false;
+                }
+                if (Verify1(88)) {
+                    if(!cursiva)
+                        cursiva=true
+                    else 
+                        cursiva=false;
+                }
+                if (Verify1(67)) {
+                    if(!subrayado)
+                        subrayado=true
+                    else 
+                        subrayado=false;
+                }       
                 // //Punto
                 // if (tabla[83] && Count()==1) {
                 //     textarea.value+=".";
@@ -162,8 +193,9 @@ $(document).ready(function() {
                         Write(textarea, "6");
                         number = false;
                     }
-                    else
+                    else{
                         Write(textarea, "f");
+                    }
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto4);
@@ -615,7 +647,7 @@ $(document).ready(function() {
                     ChangeColor(punto3);
                 } 
                 //Letra Parentesis Cerrado
-                if(Verify3(73,75,83)){
+                if(Verify3(74,75,83)){
                     Write(textarea, ")");
                     ClearTabla();
                     ChangeColor(punto4);
