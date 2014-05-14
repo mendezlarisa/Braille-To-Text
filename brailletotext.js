@@ -9,16 +9,16 @@ $(document).ready(function() {
             83: false, //S - 3
             74: false, //J - 4
             75: false, //K - 5
-            76: false,  //L - 6
-            90: false   //Z
-            88: false   //X
-            67: false   //C
+            76: false, //L - 6
+            90: false, //Z - Bold
+            88: false, //X - Italic
+            67: false  //C - Underline
         };
         var mayus = false;        
         var number = false;
-        var negrita = false;
-        var cursiva = false;
-        var subrayado = false;
+        var bold = false;
+        var italic = false;
+        var underline = false;
         var textarea = document.getElementById("bloque");
         var punto1 = document.getElementById("punto1");  
         var punto2 = document.getElementById("punto2");  
@@ -45,14 +45,20 @@ $(document).ready(function() {
             textarea.value=strng.substring(0,strng.length-1)
         }
         function Write(textarea, texto){
-            if(negrita & !cursiva & !subrayado)
+            if (bold & !italic & !underline)
                 textarea.innerHTML+="<b>"+texto+"</b>"
-            else if(cursiva & !negrita & !subrayado)
+            else if(italic &  !bold & !underline)
                 textarea.innerHTML+="<i>"+texto+"</i>"
-            else if(subrayado & !cursiva & !negrita)
+            else if(underline & !italic &  !bold)
                 textarea.innerHTML+="<u>"+texto+"</u>"
+            else if (bold & italic & !underline)
+                textarea.innerHTML+="<b><i>" + texto + "</b></i>"
+            else if (bold & !italic & underline)
+                textarea.innerHTML+="<u><b>" + texto + "</u></b>"
+            else if (bold & italic & underline)
+                textarea.innerHTML+="<u><b><i>" + texto + "</u></b></i>";
             else
-                textarea.innerHTML+=texto;
+                textarea.innerHTML+=texto;                
         }
         function ChangeColor(puntoid){
             move(puntoid)
@@ -140,23 +146,29 @@ $(document).ready(function() {
                     Write(textarea, "\t");
                     ClearTabla();
                 }
+                //Bold
                 if (Verify1(90)) {
-                    if(!negrita)
-                        negrita=true
+                    if(bold == false)
+                        bold = true;
                     else 
-                        negrita=false;
+                        bold = false;
+                    ClearTabla();
                 }
+                //Italic
                 if (Verify1(88)) {
-                    if(!cursiva)
-                        cursiva=true
+                    if(italic == false)
+                        italic = true;
                     else 
-                        cursiva=false;
+                        italic = false;
+                    ClearTabla();
                 }
+                //Underline
                 if (Verify1(67)) {
-                    if(!subrayado)
-                        subrayado=true
+                    if(!underline)
+                        underline = true;
                     else 
-                        subrayado=false;
+                        underline = false;
+                    ClearTabla();
                 }       
                 // //Punto
                 // if (tabla[83] && Count()==1) {
