@@ -3,6 +3,9 @@
     src: url('TektonPro-Bold.ttf') 
     format ('truetype'); 
 }    
+p{
+    font-family: Verdana;
+}
 #bloque{
     width: 100%;
     height: 350px;
@@ -15,6 +18,9 @@
     background-color: #ffffff;
     padding: 1em;
     text-align: left;
+}
+#teclado{
+    width: 60%;
 }
 #logo_braille{
 	height: 120px;
