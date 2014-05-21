@@ -19,7 +19,11 @@ p{
     padding: 1em;
     text-align: left;
 }
-#teclado{
+#alfabeto{
+    width: 50%;
+    float: left;
+}
+.teclado{
     width: 60%;
 }
 #logo_braille{
