@@ -27,7 +27,41 @@ $(document).ready(function() {
         var punto5 = document.getElementById("punto5");  
         var punto6 = document.getElementById("punto6");  
      
-        // document.getElementById('prueba.mp3').play();
+        var A = new Audio('audio/A.mp3');
+        var B = new Audio('audio/B.mp3');
+        var C = new Audio('audio/C.mp3');
+        var D = new Audio('audio/D.mp3');
+        var E = new Audio('audio/E.mp3');
+        var F = new Audio('audio/F.mp3');
+        var G = new Audio('audio/G.mp3');
+        var H = new Audio('audio/H.mp3');
+        var I = new Audio('audio/I.mp3');
+        var J = new Audio('audio/J.mp3');
+        var K = new Audio('audio/K.mp3');
+        var L = new Audio('audio/L.mp3');
+        var M = new Audio('audio/M.mp3');
+        var N = new Audio('audio/N.mp3');
+        var Ñ = new Audio('audio/Ñ.mp3');
+        var O = new Audio('audio/O.mp3');
+        var P = new Audio('audio/P.mp3');
+        var Q = new Audio('audio/Q.mp3');
+        var R = new Audio('audio/R.mp3');
+        var S = new Audio('audio/S.mp3');
+        var T = new Audio('audio/T.mp3');
+        var U = new Audio('audio/U.mp3');
+        var V = new Audio('audio/V.mp3');
+        var W = new Audio('audio/W.mp3');
+        var X = new Audio('audio/X.mp3');
+        var Y = new Audio('audio/Y.mp3');
+        var Z = new Audio('audio/Z.mp3');
+        var MayusculaA = new Audio('audio/MayusculaActivado.mp3');
+        var MayusculaD = new Audio('audio/MayusculaDesactivado.mp3');
+        var NegritaA = new Audio('audio/NegritaActivado.mp3');
+        var NEgritaD = new Audio('audio/NegritaDesactivado.mp3');
+        var SubrayadoA = new Audio('audio/SubrayadoActivado.mp3');
+        var SubrayadoD = new Audio('audio/SubrayadoDesactivado.mp3');
+        var CursivaA = new Audio('audio/CursivaActivado.mp3');
+        var CursivaD = new Audio('audio/CursivaDesactivado.mp3');
 
         function ClearTabla(){
             for (var item in tabla)
@@ -202,12 +236,14 @@ $(document).ready(function() {
                     if(mayus){
                         Write(div, "F");                    
                         mayus = false;
+                        F.play();
                     }else if (number){
                         Write(div, "6");
                         number = false;
                     }
                     else{
                         Write(div, "f");
+                        F.play();
                     }
                     ClearTabla();
                     ChangeColor(punto1);
@@ -220,12 +256,14 @@ $(document).ready(function() {
                     if(mayus){
                         Write(div, "A");
                         mayus = false;
+                        A.play();
                     } else if (number){
                         Write(div, "1");
                         number = false;
                     }                   
-                    else
+                    else{
                         Write(div,"a");
+                        A.play();}
                     ChangeColor(punto1);
                     ClearTabla();
                 }
@@ -234,12 +272,14 @@ $(document).ready(function() {
                     if(mayus){
                         Write(div, "B");                    
                         mayus = false;
+                        B.play();
                     }else if (number){
                         Write(div, "2");
                         number = false;
                     }
-                    else
+                    else{
                         Write(div, "b");
+                        B.play();}
                     ChangeColor(punto1);
                     ChangeColor(punto2);
                     ClearTabla();
@@ -249,12 +289,14 @@ $(document).ready(function() {
                     if(mayus){
                         Write(div, "C");                    
                         mayus = false;
+                        C.play();
                     }else if (number){
                         Write(div, "3");
                         number = false;
                     }
-                    else
+                    else{
                         Write(div, "c");
+                        C.play();}
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto4);
@@ -264,12 +306,14 @@ $(document).ready(function() {
                     if(mayus){
                         Write(div, "D");                    
                         mayus = false;
+                        D.play();
                     }else if(number){
                         Write(div, "4");
                         number = false;
                     }
-                    else
+                    else{
                         Write(div, "d");
+                        D.play();}
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto4);
@@ -278,14 +322,16 @@ $(document).ready(function() {
                 //Letra E-e-5
                 if(Verify2(70,75)){
                     if(mayus){
-                        Write(div, "E");                    
+                        Write(div, "E");
+                        E.play();                    
                         mayus = false;
                     }else if (number){
                         Write(div, "5");
                         number = false;
                     }
-                    else
+                    else{
                         Write(div, "e");
+                        E.play();}
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto5);
@@ -293,14 +339,16 @@ $(document).ready(function() {
                   //Letra G-g-7
                 if(Verify4(70,74,68,75)){
                     if(mayus){
-                        Write(div, "G");                    
+                        Write(div, "G"); 
+                        G.play();                   
                         mayus = false;
                     }else if (number){
                         Write(div, "7");
                         number = false;
                     }
-                    else
+                    else{
                         Write(div, "g");
+                        G.play();}
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto2);
@@ -310,14 +358,16 @@ $(document).ready(function() {
                 //Letra H-h-8
                 if(Verify3(70,75,68)){
                     if(mayus){
-                        Write(div, "H");                    
+                        Write(div, "H");
+                        H.play();                    
                         mayus = false;
                     }else if (number){
                         Write(div, "8");
                         number = false;
                     }
-                    else
+                    else{
                         Write(div, "h");
+                        H.play();}
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto2);
@@ -326,14 +376,16 @@ $(document).ready(function() {
                 //Letra I-i-9
                 if(Verify2(68,74)){
                     if(mayus){
-                        Write(div, "I");                    
+                        Write(div, "I"); 
+                        I.play();                   
                         mayus = false;
                     }else if (number){
                         Write(div, "9");
                         number = false;
                     }
-                    else
+                    else{
                         Write(div, "i");
+                        I.play();}
                     ClearTabla();
                     ChangeColor(punto2);
                     ChangeColor(punto4);
@@ -343,12 +395,14 @@ $(document).ready(function() {
                     if(mayus){
                         Write(div, "J");                    
                         mayus = false;
+                        J.play();
                     }else if (number){
                         Write(div, "0");
                         number = false;
                     }
-                    else
+                    else{
                         Write(div, "j");
+                        J.play();}
                     ClearTabla();
                     ChangeColor(punto2);
                     ChangeColor(punto4);
@@ -361,6 +415,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else
                         Write(div, "k");
+                    K.play();
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto3);
@@ -372,7 +427,8 @@ $(document).ready(function() {
                         mayus = false;
                     }
                     else
-                        Write(div, "l");     
+                        Write(div, "l"); 
+                    L.play();    
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto2);
@@ -385,6 +441,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else
                         Write(div, "m");
+                    M.play();
                     ClearTabla();
                     ChangeColor(punto3);
                     ChangeColor(punto1);
@@ -398,6 +455,7 @@ $(document).ready(function() {
                     }else
                         Write(div, "n");
                     ClearTabla();
+                    N.play();
                     ChangeColor(punto1);
                     ChangeColor(punto3);
                     ChangeColor(punto4);
@@ -411,6 +469,7 @@ $(document).ready(function() {
                     }else
                         Write(div, "ñ");
                     ClearTabla();
+                    Ñ.play();
                     ChangeColor(punto1);
                     ChangeColor(punto2);
                     ChangeColor(punto4);
@@ -424,6 +483,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else
                         Write(div, "o");
+                    O.play();
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto3);
@@ -436,6 +496,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else
                         Write(div, "p");
+                    P.play();
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto2);
@@ -450,6 +511,7 @@ $(document).ready(function() {
                     }else
                         Write(div, "q");
                     ClearTabla();
+                    P.play();
                     ChangeColor(punto1);
                     ChangeColor(punto2);
                     ChangeColor(punto3);
@@ -463,6 +525,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else
                         Write(div, "r");
+                    R.play();
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto2);
@@ -476,6 +539,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else
                         Write(div, "s");
+                    S.play();
                     ClearTabla();
                     ChangeColor(punto2);
                     ChangeColor(punto3);
@@ -488,6 +552,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else
                         Write(div, "t");
+                    T.play();
                     ClearTabla();
                     ChangeColor(punto2);
                     ChangeColor(punto3);
@@ -501,6 +566,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else
                         Write(div, "u");
+                    U.play();
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto4);
@@ -513,6 +579,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else
                         Write(div, "v");
+                    V.play();
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto2);
@@ -526,6 +593,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else
                         Write(div, "w");
+                    W.play();
                     ClearTabla();
                     ChangeColor(punto2);
                     ChangeColor(punto4);
@@ -539,6 +607,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else
                         Write(div, "x");
+                    X.play();
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto3);
@@ -552,6 +621,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else
                         Write(div, "y");
+                    Y.play();
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto6);
@@ -566,6 +636,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else
                         Write(div, "z");
+                    Z.play();
                     ClearTabla();
                     ChangeColor(punto1);
                     ChangeColor(punto3);
