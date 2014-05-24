@@ -35,7 +35,6 @@ $(document).ready(function() {
                 bold = false;
                 NegritaD.play();}
         }
-<<<<<<< HEAD
         function italicb(){
             if(italic == false){
                 italic = true;
@@ -69,15 +68,12 @@ $(document).ready(function() {
         document.getElementById("boldn").onclick = boldb;
         document.getElementById("italicn").onclick = italicb;
         document.getElementById("underlinen").onclick = underlineb;
-        document.getElementById("alignl").onclick=tal;
+        document.getElementById("alignl").onclick= tal;
         document.getElementById("alignr").onclick=tar;
         document.getElementById("alignc").onclick=tac;
         document.getElementById("alignj").onclick=taj;
 
         $('#menu li a').css('color', 'blue');
-=======
-        document.getElementById("boldn").onclick = boldb;
->>>>>>> 74379815bac4e5f4578db2a20649572ba76716b5
      
         var A = new Audio('audio/A.mp3');
         var B = new Audio('audio/B.mp3');
@@ -829,3 +825,4 @@ $(document).ready(function() {
                 // }
             }
         });
+    });
