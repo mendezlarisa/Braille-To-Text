@@ -26,6 +26,16 @@ $(document).ready(function() {
         var punto4 = document.getElementById("punto4");  
         var punto5 = document.getElementById("punto5");  
         var punto6 = document.getElementById("punto6");  
+
+        function boldb(){
+            if(bold == false){
+                bold = true;
+                NegritaA.play();}
+            else{ 
+                bold = false;
+                NegritaD.play();}
+        }
+        document.getElementById("boldn").onclick = boldb;
      
         var A = new Audio('audio/A.mp3');
         var B = new Audio('audio/B.mp3');
@@ -55,13 +65,23 @@ $(document).ready(function() {
         var Y = new Audio('audio/Y.mp3');
         var Z = new Audio('audio/Z.mp3');
         var MayusculaA = new Audio('audio/MayusculaActivado.mp3');
-        var MayusculaD = new Audio('audio/MayusculaDesactivado.mp3');
         var NegritaA = new Audio('audio/NegritaActivado.mp3');
-        var NEgritaD = new Audio('audio/NegritaDesactivado.mp3');
+        var NegritaD = new Audio('audio/NegritaDesactivado.mp3');
         var SubrayadoA = new Audio('audio/SubrayadoActivado.mp3');
         var SubrayadoD = new Audio('audio/SubrayadoDesactivado.mp3');
         var CursivaA = new Audio('audio/CursivaActivado.mp3');
         var CursivaD = new Audio('audio/CursivaDesactivado.mp3');
+        var Uno = new Audio('audio/1.mp3');
+        var Dos = new Audio('audio/2.mp3');
+        var Tres = new Audio('audio/3.mp3');
+        var Cuatro = new Audio('audio/4.mp3');
+        var Cinco = new Audio('audio/5.mp3');
+        var Seis = new Audio('audio/6.mp3');
+        var Siete = new Audio('audio/7.mp3');
+        var Ocho = new Audio('audio/8.mp3');
+        var Nueve = new Audio('audio/9.mp3');
+        var Cero = new Audio('audio/0.mp3');
+        var NumeroA = new Audio('audio/NumerosA.mp3');
 
         function ClearTabla(){
             for (var item in tabla)
@@ -148,6 +168,7 @@ $(document).ready(function() {
                 //Numero                
                 if(Verify4(83,74,75,76)){
                     number = true;
+                    NumerosA.play();
                     ClearTabla();
                     ChangeColor(punto3);
                     ChangeColor(punto4);
@@ -156,7 +177,8 @@ $(document).ready(function() {
                 } 
                 //Mayuscula
                 if(Verify2(74,76)){
-                    mayus = true;          
+                    mayus = true; 
+                    MayusculaA.play();         
                     ClearTabla(); 
                     ChangeColor(punto4);
                     ChangeColor(punto6);                   
@@ -183,26 +205,32 @@ $(document).ready(function() {
                 }
                 //Bold
                 if (Verify1(90)) {
-                    if(bold == false)
+                    if(bold == false){
                         bold = true;
-                    else 
+                        NegritaA.play();}
+                    else{ 
                         bold = false;
+                        NegritaD.play();}
                     ClearTabla();
                 }
                 //Italic
                 if (Verify1(88)) {
-                    if(italic == false)
+                    if(italic == false){
                         italic = true;
-                    else 
+                        CursivaA.play();}
+                    else{ 
                         italic = false;
+                        CursivaD.play();}
                     ClearTabla();
                 }
                 //Underline
                 if (Verify1(67)) {
-                    if(!underline)
+                    if(!underline){
                         underline = true;
-                    else 
+                        SubrayadoA.play();}
+                    else{ 
                         underline = false;
+                        SubrayadoD.play();}
                     ClearTabla();
                 }       
                 // //Punto
@@ -239,6 +267,7 @@ $(document).ready(function() {
                         F.play();
                     }else if (number){
                         Write(div, "6");
+                        Seis.play();
                         number = false;
                     }
                     else{
@@ -259,6 +288,7 @@ $(document).ready(function() {
                         A.play();
                     } else if (number){
                         Write(div, "1");
+                        Uno.play();
                         number = false;
                     }                   
                     else{
@@ -275,6 +305,7 @@ $(document).ready(function() {
                         B.play();
                     }else if (number){
                         Write(div, "2");
+                        Dos.play();
                         number = false;
                     }
                     else{
@@ -292,6 +323,7 @@ $(document).ready(function() {
                         C.play();
                     }else if (number){
                         Write(div, "3");
+                        Tres.play();
                         number = false;
                     }
                     else{
@@ -309,6 +341,7 @@ $(document).ready(function() {
                         D.play();
                     }else if(number){
                         Write(div, "4");
+                        Cuatro.play();
                         number = false;
                     }
                     else{
@@ -327,6 +360,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else if (number){
                         Write(div, "5");
+                        Cinco.play();
                         number = false;
                     }
                     else{
@@ -344,6 +378,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else if (number){
                         Write(div, "7");
+                        Siete.play();
                         number = false;
                     }
                     else{
@@ -363,6 +398,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else if (number){
                         Write(div, "8");
+                        Ocho.play();
                         number = false;
                     }
                     else{
@@ -381,6 +417,7 @@ $(document).ready(function() {
                         mayus = false;
                     }else if (number){
                         Write(div, "9");
+                        Nueve.play();
                         number = false;
                     }
                     else{
@@ -398,6 +435,7 @@ $(document).ready(function() {
                         J.play();
                     }else if (number){
                         Write(div, "0");
+                        Cero.play();
                         number = false;
                     }
                     else{
@@ -747,4 +785,3 @@ $(document).ready(function() {
                 // }
             }
         });
-    });
