@@ -855,4 +855,8 @@ $(document).ready(function() {
                 // }
             // }
         });
+<<<<<<< HEAD
     });
+=======
+    });
+>>>>>>> 7a875ccfc55c6fe7e8ad120cf88b4b98b7343b13
