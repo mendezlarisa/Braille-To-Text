@@ -35,7 +35,6 @@ $(document).ready(function() {
                 bold = false;
                 NegritaD.play();}
         }
-<<<<<<< HEAD
         function italicb(){
             if(italic == false){
                 italic = true;
@@ -65,19 +64,28 @@ $(document).ready(function() {
         function taj(){
             $('#bloque').css('text-align', 'justify');
         }
+        function almacenar(){
+            localStorage.documento=div.innerHTML;
+        }
+        function viñeta(){
+            div.innerHTML+="-";
+        }
+        function carga(){
+            div.innerHTML=localStorage.documento;
+        }
 
         document.getElementById("boldn").onclick = boldb;
         document.getElementById("italicn").onclick = italicb;
         document.getElementById("underlinen").onclick = underlineb;
-        document.getElementById("alignl").onclick=tal;
+        document.getElementById("alignl").onclick= tal;
         document.getElementById("alignr").onclick=tar;
         document.getElementById("alignc").onclick=tac;
         document.getElementById("alignj").onclick=taj;
+        document.getElementById("guardar").onclick=almacenar;
+        document.getElementById("listar").onclick=viñeta;
+        document.getElementById("cargar").onclick=carga;
 
         $('#menu li a').css('color', 'blue');
-=======
-        document.getElementById("boldn").onclick = boldb;
->>>>>>> 74379815bac4e5f4578db2a20649572ba76716b5
      
         var A = new Audio('audio/A.mp3');
         var B = new Audio('audio/B.mp3');
@@ -106,6 +114,13 @@ $(document).ready(function() {
         var X = new Audio('audio/X.mp3');
         var Y = new Audio('audio/Y.mp3');
         var Z = new Audio('audio/Z.mp3');
+        var Aacentuada = new Audio('audio/a.acentuada/.mp3');
+        var Eacentuada = new Audio('audio/e.acentuada.mp3');
+        var Iacentuada = new Audio('audio/i.acentuada.mp3');
+        var Oacentuada = new Audio('audio/o.acentuada.mp3');
+        var Uacentuada = new Audio('audio/u.acentuada.mp3');
+        var AbreParentesis = new Audio('audio/AbreParentesis.mp3');
+        var CierraParentesis = new Audio('audio/CierraParentesis.mp3');
         var MayusculaA = new Audio('audio/MayusculaActivado.mp3');
         var NegritaA = new Audio('audio/NegritaActivado.mp3');
         var NegritaD = new Audio('audio/NegritaDesactivado.mp3');
@@ -124,6 +139,7 @@ $(document).ready(function() {
         var Nueve = new Audio('audio/9.mp3');
         var Cero = new Audio('audio/0.mp3');
         var NumeroA = new Audio('audio/NumerosA.mp3');
+        
 
         function ClearTabla(){
             for (var item in tabla)
@@ -157,7 +173,7 @@ $(document).ready(function() {
             else if (bold & italic & underline)
                 div.innerHTML+="<u><b><i>" + texto + "</u></b></i>";
             else
-                div.innerHTML+=texto;                
+                div.innerHTML+=texto;             
         }
         function ChangeColor(puntoid){
             move(puntoid)
@@ -208,11 +224,11 @@ $(document).ready(function() {
                     console.log(Count(),item);
             }
 
-            for (var item in tabla){ 
+            // for (var item in tabla){ 
                 //Numero                
                 if(Verify4(83,74,75,76)){
                     number = true;
-                    NumerosA.play();
+                    // NumerosA.play();
                     ClearTabla();
                     ChangeColor(punto3);
                     ChangeColor(punto4);
@@ -239,12 +255,12 @@ $(document).ready(function() {
                 }
                 //Salto de Linea
                 if (Verify1(65)) {
-                    Write(div, "\n");
+                    Write(div, "<br>");
                     ClearTabla();
                 }
                 //Tabulador
                 if (Verify1(71)) {
-                    Write(div, "\t");
+                    Write(div, "  ");
                     ClearTabla();
                 }
                 //Bold
@@ -277,6 +293,7 @@ $(document).ready(function() {
                         SubrayadoD.play();}
                     ClearTabla();
                 }       
+
                 // //Punto
                 // if (tabla[83] && Count()==1) {
                 //     div.value+=".";
@@ -286,25 +303,116 @@ $(document).ready(function() {
                 // if (tabla[68] && Count()==1) {
                 //     div.value+=",";
                 //     ClearTabla();
-                // }          
-                //Guion
-                if(Verify2(83,76)){
-                    Write(div, "-");                    
-                    ClearTabla();
-                    ChangeColor(punto3);
-                    ChangeColor(punto6);
-                }               
-                //Comillas                                
-                if(Verify3(68,83,76)){
-                    Write(div, "\"");
-                    ClearTabla();
-                    ChangeColor(punto2);
-                    ChangeColor(punto3);
-                    ChangeColor(punto6);
-                }
+                // }   
 
+                //Guion
+                // if(Verify2(83,76)){
+                //     Write(div, "-");                    
+                //     ClearTabla();
+                //     ChangeColor(punto3);
+                //     ChangeColor(punto6);
+                // }               
+                // //Comillas                                
+                // if(Verify3(68,83,76)){
+                //     Write(div, "\"");
+                //     ClearTabla();
+                //     ChangeColor(punto2);
+                //     ChangeColor(punto3);
+                //     ChangeColor(punto6);
+                // }
+
+                //Letra A-a-1
+                if (Verify1(70)){
+                    if(mayus){
+                        Write(div, "A");
+                        mayus = false;
+                        A.play();
+                    } else if (number){
+                        Write(div, "1");
+                        Uno.play();
+                        number = false;
+                    }                   
+                    else{
+                        Write(div,"a");
+                        A.play();}
+                    ChangeColor(punto1);
+                    ClearTabla();
+                }
+                //Letra B-b-2
+                else if(Verify2(70,68)){
+                    if(mayus){
+                        Write(div, "B");                    
+                        mayus = false;
+                        B.play();
+                    }else if (number){
+                        Write(div, "2");
+                        Dos.play();
+                        number = false;
+                    }
+                    else{
+                        Write(div, "b");
+                        B.play();}
+                    ChangeColor(punto1);
+                    ChangeColor(punto2);
+                    ClearTabla();
+                }                 
+                //Letra C-c-3
+                else if(Verify2(70,74)){
+                    if(mayus){
+                        Write(div, "C");                    
+                        mayus = false;
+                        C.play();
+                    }else if (number){
+                        Write(div, "3");
+                        Tres.play();
+                        number = false;
+                    }
+                    else{
+                        Write(div, "c");
+                        C.play();}
+                    ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto4);
+                }
+                //Letra D-d-4                                  
+                else if(Verify3(70,74,75)){
+                    if(mayus){
+                        Write(div, "D");                    
+                        mayus = false;
+                        D.play();
+                    }else if(number){
+                        Write(div, "4");
+                        Cuatro.play();
+                        number = false;
+                    }
+                    else{
+                        Write(div, "d");
+                        D.play();}
+                    ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto4);
+                    ChangeColor(punto5);
+                }
+                //Letra E-e-5
+                else if(Verify2(70,75)){
+                    if(mayus){
+                        Write(div, "E");
+                        E.play();                    
+                        mayus = false;
+                    }else if (number){
+                        Write(div, "5");
+                        Cinco.play();
+                        number = false;
+                    }
+                    else{
+                        Write(div, "e");
+                        E.play();}
+                    ClearTabla();
+                    ChangeColor(punto1);
+                    ChangeColor(punto5);
+                }  
                 //Letra F-f-6
-                if(Verify3(70,74,68)){
+                else if(Verify3(70,74,68)){
                     if(mayus){
                         Write(div, "F");                    
                         mayus = false;
@@ -324,98 +432,8 @@ $(document).ready(function() {
                     ChangeColor(punto2);
                 } 
                 
-                //Letra A-a-1
-                if (Verify1(70)){
-                    if(mayus){
-                        Write(div, "A");
-                        mayus = false;
-                        A.play();
-                    } else if (number){
-                        Write(div, "1");
-                        Uno.play();
-                        number = false;
-                    }                   
-                    else{
-                        Write(div,"a");
-                        A.play();}
-                    ChangeColor(punto1);
-                    ClearTabla();
-                }
-                //Letra B-b-2
-                if(Verify2(70,68)){
-                    if(mayus){
-                        Write(div, "B");                    
-                        mayus = false;
-                        B.play();
-                    }else if (number){
-                        Write(div, "2");
-                        Dos.play();
-                        number = false;
-                    }
-                    else{
-                        Write(div, "b");
-                        B.play();}
-                    ChangeColor(punto1);
-                    ChangeColor(punto2);
-                    ClearTabla();
-                }                 
-                //Letra C-c-3
-                if(Verify2(70,74)){
-                    if(mayus){
-                        Write(div, "C");                    
-                        mayus = false;
-                        C.play();
-                    }else if (number){
-                        Write(div, "3");
-                        Tres.play();
-                        number = false;
-                    }
-                    else{
-                        Write(div, "c");
-                        C.play();}
-                    ClearTabla();
-                    ChangeColor(punto1);
-                    ChangeColor(punto4);
-                }
-                //Letra D-d-4                                  
-                if(Verify3(70,74,75)){
-                    if(mayus){
-                        Write(div, "D");                    
-                        mayus = false;
-                        D.play();
-                    }else if(number){
-                        Write(div, "4");
-                        Cuatro.play();
-                        number = false;
-                    }
-                    else{
-                        Write(div, "d");
-                        D.play();}
-                    ClearTabla();
-                    ChangeColor(punto1);
-                    ChangeColor(punto4);
-                    ChangeColor(punto5);
-                }
-                //Letra E-e-5
-                if(Verify2(70,75)){
-                    if(mayus){
-                        Write(div, "E");
-                        E.play();                    
-                        mayus = false;
-                    }else if (number){
-                        Write(div, "5");
-                        Cinco.play();
-                        number = false;
-                    }
-                    else{
-                        Write(div, "e");
-                        E.play();}
-                    ClearTabla();
-                    ChangeColor(punto1);
-                    ChangeColor(punto5);
-                }                          
                   //Letra G-g-7
-                if(Verify4(70,74,68,75)){
+                else if(Verify4(70,74,68,75)){
                     if(mayus){
                         Write(div, "G"); 
                         G.play();                   
@@ -435,7 +453,7 @@ $(document).ready(function() {
                     ChangeColor(punto5);
                 }  
                 //Letra H-h-8
-                if(Verify3(70,75,68)){
+                else if(Verify3(70,75,68)){
                     if(mayus){
                         Write(div, "H");
                         H.play();                    
@@ -454,7 +472,7 @@ $(document).ready(function() {
                     ChangeColor(punto5);
                 }                  
                 //Letra I-i-9
-                if(Verify2(68,74)){
+                else if(Verify2(68,74)){
                     if(mayus){
                         Write(div, "I"); 
                         I.play();                   
@@ -472,7 +490,7 @@ $(document).ready(function() {
                     ChangeColor(punto4);
                 }   
                 //Letra J-j-0
-                if(Verify3(68,75,74)){
+                else if(Verify3(68,75,74)){
                     if(mayus){
                         Write(div, "J");                    
                         mayus = false;
@@ -491,7 +509,7 @@ $(document).ready(function() {
                     ChangeColor(punto5);
                 }  
                 //Letra K-k
-                if(Verify2(70,83)){
+                else if(Verify2(70,83)){
                     if(mayus){
                         Write(div, "K");                    
                         mayus = false;
@@ -503,7 +521,7 @@ $(document).ready(function() {
                     ChangeColor(punto3);
                 } 
                 //Letra L-l
-                if(Verify3(70,68,83)){
+                else if(Verify3(70,68,83)){
                     if (mayus) {
                         Write(div, "L");
                         mayus = false;
@@ -517,7 +535,7 @@ $(document).ready(function() {
                     ChangeColor(punto3);
                 }
                 //Letra M-m
-                 if(Verify3(70,74,83)){
+                else if(Verify3(70,74,83)){
                     if(mayus){
                         Write(div, "M");                    
                         mayus = false;
@@ -530,7 +548,7 @@ $(document).ready(function() {
                     ChangeColor(punto4);
                 }
                 //Letra N-n
-                 if(Verify4(70,74,75,83)){
+                else if(Verify4(70,74,75,83)){
                     if(mayus){
                         Write(div, "N");                    
                         mayus = false;
@@ -544,7 +562,7 @@ $(document).ready(function() {
                     ChangeColor(punto5);
                 }  
                  //Letra Ñ-ñ
-                if(Verify5(70,74,75,76,68)){
+                else if(Verify5(70,74,75,76,68)){
                     if(mayus){
                         Write(div, "Ñ");                    
                         mayus = false;
@@ -559,7 +577,7 @@ $(document).ready(function() {
                     ChangeColor(punto6);
                 }                
                 //Letra O-o
-                 if(Verify3(70,75,83)){
+                else if(Verify3(70,75,83)){
                     if(mayus){
                         Write(div, "O");                    
                         mayus = false;
@@ -572,7 +590,7 @@ $(document).ready(function() {
                     ChangeColor(punto5);
                 }
                 //Letra P-p
-                 if(Verify4(70,68,83,74)){
+                else if(Verify4(70,68,83,74)){
                     if(mayus){
                         Write(div, "P");                    
                         mayus = false;
@@ -586,7 +604,7 @@ $(document).ready(function() {
                     ChangeColor(punto4);
                 }
                  //Letra Q-q
-                if(Verify5(70,68,83,75,74)){
+                else if(Verify5(70,68,83,75,74)){
                     if(mayus){
                         Write(div, "Q");                    
                         mayus = false;
@@ -601,7 +619,7 @@ $(document).ready(function() {
                     ChangeColor(punto5);
                 }     
                 //Letra R-r
-                 if(Verify4(70,68,83,75)){
+                else if(Verify4(70,68,83,75)){
                     if(mayus){
                         Write(div, "R");                    
                         mayus = false;
@@ -615,7 +633,7 @@ $(document).ready(function() {
                     ChangeColor(punto5);
                 }
                 //Letra S-s
-                 if(Verify3(68,83,74)){
+                else if(Verify3(68,83,74)){
                     if(mayus){
                         Write(div, "S");                    
                         mayus = false;
@@ -628,7 +646,7 @@ $(document).ready(function() {
                     ChangeColor(punto4);
                 }
                 //Letra T-t
-                 if(Verify4(68,83,74,75)){
+                else if(Verify4(68,83,74,75)){
                     if(mayus){
                         Write(div, "T");                    
                         mayus = false;
@@ -642,7 +660,7 @@ $(document).ready(function() {
                     ChangeColor(punto5);
                 }
                 //Letra U-u
-                 if(Verify3(70,83,76)){
+                else if(Verify3(70,83,76)){
                     if(mayus){
                         Write(div, "U");                    
                         mayus = false;
@@ -655,7 +673,7 @@ $(document).ready(function() {
                     ChangeColor(punto6);
                 } 
                 //Letra V-v
-                 if(Verify4(70,68,83,76)){
+                else if(Verify4(70,68,83,76)){
                     if(mayus){
                         Write(div, "V");                    
                         mayus = false;
@@ -669,7 +687,7 @@ $(document).ready(function() {
                     ChangeColor(punto6);
                 }
                 //Letra W-w
-                 if(Verify4(68,74,75,76)){
+                else if(Verify4(68,74,75,76)){
                     if(mayus){
                         Write(div, "W");                    
                         mayus = false;
@@ -683,7 +701,7 @@ $(document).ready(function() {
                     ChangeColor(punto6);
                 }
                 //Letra X-x
-                 if(Verify4(70,74,83,76)){
+                else if(Verify4(70,74,83,76)){
                     if(mayus){
                         Write(div, "X");                    
                         mayus = false;
@@ -697,7 +715,7 @@ $(document).ready(function() {
                     ChangeColor(punto6);
                 } 
                  //Letra Y-y
-                if(Verify5(70,83,74,75,76)){
+                else if(Verify5(70,83,74,75,76)){
                     if(mayus){
                         Write(div, "Y");                    
                         mayus = false;
@@ -712,7 +730,7 @@ $(document).ready(function() {
                     ChangeColor(punto5);
                 } 
                 //Letra Z-z
-                 if(Verify4(70,83,75,76)){
+                else if(Verify4(70,83,75,76)){
                     if(mayus){
                         Write(div, "Z");                    
                         mayus = false;
@@ -724,102 +742,110 @@ $(document).ready(function() {
                     ChangeColor(punto3);
                     ChangeColor(punto6);
                     ChangeColor(punto5);
-                }     
-                 //Letra Á-á
-                if(Verify5(70,68,83,75,76)){
-                    if(mayus){
-                        Write(div, "Á");                    
-                        mayus = false;
-                    }else
-                        Write(div, "á");
-                    ClearTabla();
-                    ChangeColor(punto1);
-                    ChangeColor(punto2);
-                    ChangeColor(punto3);
-                    ChangeColor(punto6);
-                    ChangeColor(punto5);
-                }    
-                //Letra É-é
-                if(Verify4(68,83,74,76)){
-                    if(mayus){
-                        Write(div, "É");                    
-                        mayus = false;
-                    }else
-                        Write(div, "é");
-                    ClearTabla();
-                    ChangeColor(punto2);
-                    ChangeColor(punto3);
-                    ChangeColor(punto4);
-                    ChangeColor(punto6);
-                }
-                //Letra Í-í
-                if(Verify2(83,74)){
-                    if(mayus){
-                        Write(div, "Í");                    
-                        mayus = false;
-                    }else
-                        Write(div, "í");
-                    ClearTabla();
-                    ChangeColor(punto3);
-                    ChangeColor(punto4);
-                } 
-                //Letra Ó-ó
-                if(Verify3(83,76,74)){
-                    if(mayus){
-                        Write(div, "Ó");                    
-                        mayus = false;
-                    }else
-                        Write(div, "ó");
-                    ClearTabla();
-                    ChangeColor(punto3);
-                    ChangeColor(punto4);
-                    ChangeColor(punto6);
-                } 
-                //Letra Ú-ú
-                if(Verify5(68,83,74,75,76)){
-                    if(mayus){
-                        Write(div, "Ú");                    
-                        mayus = false;
-                    }else
-                        Write(div, "ú");
-                    ClearTabla();
-                    ChangeColor(punto2);
-                    ChangeColor(punto3);
-                    ChangeColor(punto4);
-                    ChangeColor(punto5);
-                    ChangeColor(punto6);
-                }    
-                //Letra Ü-ü
-                if(Verify4(70,68,75,76)){
-                    if(mayus){
-                        Write(div, "Ü");                    
-                        mayus = false;
-                    }else
-                        Write(div, "ü");
-                    ClearTabla();
-                    ChangeColor(punto2);
-                    ChangeColor(punto1);
-                    ChangeColor(punto5);
-                    ChangeColor(punto6);
-                } 
-                //Letra Signo de Interrogacion
-                //Letra Signa de Exclamacion
-                //Letra Parentesis Abierto
-                if(Verify3(70,68,76)){
-                    Write(div, "(");
-                    ClearTabla();
-                    ChangeColor(punto1);
-                    ChangeColor(punto2);
-                    ChangeColor(punto3);
-                } 
-                //Letra Parentesis Cerrado
-                if(Verify3(74,75,83)){
-                    Write(div, ")");
-                    ClearTabla();
-                    ChangeColor(punto4);
-                    ChangeColor(punto5);
-                    ChangeColor(punto3);
-                } 
+                }   
+
+                //  //Letra Á-á
+                // if(Verify5(70,68,83,75,76)){
+                //     if(mayus){
+                //         Write(div, "Á");                    
+                //         mayus = false;
+                //     }else
+                //         Write(div, "á");
+                //     ClearTabla();
+                //     Aacentuada.play();
+                //     ChangeColor(punto1);
+                //     ChangeColor(punto2);
+                //     ChangeColor(punto3);
+                //     ChangeColor(punto6);
+                //     ChangeColor(punto5);
+                // }    
+                // //Letra É-é
+                // if(Verify4(68,83,74,76)){
+                //     if(mayus){
+                //         Write(div, "É");                    
+                //         mayus = false;
+                //     }else
+                //         Write(div, "é");
+                //     ClearTabla();
+                //     Eacentuada.play();
+                //     ChangeColor(punto2);
+                //     ChangeColor(punto3);
+                //     ChangeColor(punto4);
+                //     ChangeColor(punto6);
+                // }
+                // //Letra Í-í
+                // if(Verify2(83,74)){
+                //     if(mayus){
+                //         Write(div, "Í");                    
+                //         mayus = false;
+                //     }else
+                //         Write(div, "í");
+                //     ClearTabla();
+                //     Iacentuada.play();
+                //     ChangeColor(punto3);
+                //     ChangeColor(punto4);
+                // } 
+                // //Letra Ó-ó
+                // if(Verify3(83,76,74)){
+                //     if(mayus){
+                //         Write(div, "Ó");                    
+                //         mayus = false;
+                //     }else
+                //         Write(div, "ó");
+                //     ClearTabla();
+                //     Oacentuada.play();
+                //     ChangeColor(punto3);
+                //     ChangeColor(punto4);
+                //     ChangeColor(punto6);
+                // } 
+                // //Letra Ú-ú
+                // if(Verify5(68,83,74,75,76)){
+                //     if(mayus){
+                //         Write(div, "Ú");                    
+                //         mayus = false;
+                //     }else
+                //         Write(div, "ú");
+                //     ClearTabla();
+                //     Uacentuada.play();
+                //     ChangeColor(punto2);
+                //     ChangeColor(punto3);
+                //     ChangeColor(punto4);
+                //     ChangeColor(punto5);
+                //     ChangeColor(punto6);
+                // }    
+                // //Letra Ü-ü
+                // if(Verify4(70,68,75,76)){
+                //     if(mayus){
+                //         Write(div, "Ü");                    
+                //         mayus = false;
+                //     }else
+                //         Write(div, "ü");
+                //     ClearTabla();
+                //     ChangeColor(punto2);
+                //     ChangeColor(punto1);
+                //     ChangeColor(punto5);
+                //     ChangeColor(punto6);
+                // } 
+                // //Letra Signo de Interrogacion
+                // //Letra Signa de Exclamacion
+                // //Letra Parentesis Abierto
+                // if(Verify3(70,68,76)){
+                //     Write(div, "(");
+                //     ClearTabla();
+                //     AbreParentesis.play();
+                //     ChangeColor(punto1);
+                //     ChangeColor(punto2);
+                //     ChangeColor(punto3);
+                // } 
+                // //Letra Parentesis Cerrado
+                // if(Verify3(74,75,83)){
+                //     Write(div, ")");
+                //     ClearTabla();
+                //     CierraParentesis.play();
+                //     ChangeColor(punto4);
+                //     ChangeColor(punto5);
+                //     ChangeColor(punto3);
+                // } 
                 // //Punto y Coma
                 // if(Verify2(83,68)){
                 //     Write(div, ";");                    
@@ -827,5 +853,6 @@ $(document).ready(function() {
                 //     ChangeColor(punto3);
                 //     ChangeColor(punto2);
                 // }
-            }
+            // }
         });
+    });
