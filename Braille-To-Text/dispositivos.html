@@ -1,0 +1,69 @@
+<!doctype HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Braille-To-Text</title>
+   	<link href="css\brailletotext.css" rel="stylesheet">
+   	<link rel="stylesheet" type="text/css" href="bootstrap\dist\css\bootstrap.min.css">
+   	<link rel="stylesheet" type="text/css" href="css\cover.css">
+</head>
+<body>
+	<script type="text/javascript">
+  	var dispositivo = new Audio('audio/dispositivobra.mp3');
+  	dispositivo.play();
+	</script>
+    <div class="site-wrapper">
+	    <div class="site-wrapper-inner">
+			<div class="container" style="background-color: #ffffff;  height: 600px;">
+				<div class="row">
+					<div class="col-md-3">
+						<img src="img\logo_brailletotext.png" id="logo_braille">
+					</div>
+					<div class="text-center col-md-5">
+						<h1 id="titulo">BRAILLE TO TEXT<br></h1>
+						<small id="subtitulo">SIMULADOR DE UNA M&Aacute;QUINA DE BRAILLE.</small>
+					</div>	
+					<div class="col-md-3">
+						<img src="img\logo_ucab.png" id="logo_ucab">			
+					</div>
+				</div>	
+				<hr>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="btn-group-vertical" style="width: 260px;font-family: Verdana;">
+							<a type="button" class="btn btn-default" style="text-align: left;"href="brailletotextb.html">
+								<img src="bootstrap\png\pencil.png" style="margin-right: 25px;">Editor</a>
+							<a type="button" class="btn btn-default" style="text-align: left;" href="quienessomos.html">
+								<img src="bootstrap\png\users.png" style="margin-right: 5px;"> ¿Qui&eacute;nes Somos?</a>
+							<a type="button" class="btn btn-default" style="text-align: left;" href="sistemabraille.html">
+								<img src="bootstrap\png\file.png" style="margin-right: 20px;"> Sistema Braille</a>
+							<a type="button" class="btn btn-default" style="text-align: left;" href="dispositivos.html">
+								<img src="bootstrap\png\desktop.png" style="margin-right: 13px;"> Dispositivos Braille</a>
+							<a type="button" class="btn btn-default" style="text-align: left;" href="manuales.html">
+								<img src="bootstrap\png\book.png" style="margin-right: 18px;"> Manuales</a>
+						</div>
+						<hr>
+					</div>
+					<div class="col-md-8" style="width:860px; margin-bottom:20px;">
+						<div class="row">
+							<div class="col-xs-6 col-md-3">
+								<div class="thumbnail">
+								    <img src="img\maquinaperkins.png">
+								    <img src="img\dispositivo1.jpg">
+								    <img src="img\dispositivo3.jpg">
+							    </div>
+							</div>
+							<p style="text-align: justify; font-size: 14pt">Un teclado Braille, es un dispositivo electr&oacute;nico que permite ingresar c&oacute;digo en lenguaje Braille. Los teclados Braille están compuestos normalmente por un conjunto de 6 u 8 teclas principales, una tecla de espacio y algunas auxiliares. <br><br>La disposición de las teclas es la misma que en las máquinas de escritura braille mecánicas (Máquina Perkins). Cada tecla se corresponde con un punto del símbolo braille. Las teclas se sitúan en una línea dividida en 2 bloques. El bloque de la izquierda se corresponde con los puntos 1, 2, 3 y 7, y los de la derecha con los puntos 4, 5, 6 y 8, cada bloque visto desde el centro del teclado hacia el lateral.</p>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+</body>
+<script src="js\jquery-2.1.0.min.js"></script>
+    <script src="bootstrap\dist\js\bootstrap.min.js"></script>
+    <script src="bootstrap\docs\assets\js\docs.min.js"></script>
+    <script src="js\move.min.js"></script>
+</html>

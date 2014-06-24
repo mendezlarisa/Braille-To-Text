@@ -8,6 +8,10 @@
    	<link rel="stylesheet" type="text/css" href="css\cover.css">
 </head>
 <body>
+	<script type="text/javascript">
+  	var ini = new Audio('audio/inicio.mp3');
+  	ini.play();
+	</script>
     <div class="site-wrapper">
 	    <div class="site-wrapper-inner">
 			<div class="container" style="background-color: #ffffff;  height: 600px;">
@@ -30,7 +34,7 @@
 							<a type="button" class="btn btn-default" style="text-align: left;"href="brailletotextb.html">
 								<img src="bootstrap\png\pencil.png" style="margin-right: 25px;">Editor</a>
 							<a type="button" class="btn btn-default" style="text-align: left;" href="quienessomos.html">
-								<img src="bootstrap\png\users.png" style="margin-right: 5px;"> Qui&eacute;nes Somos?</a>
+								<img src="bootstrap\png\users.png" style="margin-right: 5px;"> ¿Qui&eacute;nes Somos?</a>
 							<a type="button" class="btn btn-default" style="text-align: left;" href="sistemabraille.html">
 								<img src="bootstrap\png\file.png" style="margin-right: 20px;"> Sistema Braille</a>
 							<a type="button" class="btn btn-default" style="text-align: left;" href="dispositivos.html">
@@ -46,6 +50,9 @@
 							<button type="button" id="punto5" class="btn-simulador" style="position: absolute; margin-top: -52px; margin-left:60px;">5</button>
 							<button type="button" id="punto3" class="btn-simulador" style="">3</button>
 							<button type="button" id="punto6" class="btn-simulador" style="position: absolute; margin-top: -52px; margin-left:43px;">6</button>
+						</div>
+						<div>
+							<img id="puntos" src="img/puntos.png">
 						</div>
 					</div>
 					<div class="col-md-8" style="width:860px; margin-bottom:20px;">
@@ -64,7 +71,7 @@
 						    </div>
 						</div>
 						<div class="row">
-							<div id="bloque" type="text"  style="font-size: 14pt" disabled></div>   
+							<div id="bloque" type="text"  style="font-size: 14pt; border: solid 1px #c3c3c3" disabled></div>   
 						</div>
 					</div>
 				</div>	

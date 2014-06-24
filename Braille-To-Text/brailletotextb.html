@@ -1,0 +1,87 @@
+<!doctype HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Braille-To-Text</title>
+   	<link href="css\brailletotext.css" rel="stylesheet">
+   	<link rel="stylesheet" type="text/css" href="bootstrap\dist\css\bootstrap.min.css">
+   	<link rel="stylesheet" type="text/css" href="css\cover.css">
+</head>
+<body>
+	<script type="text/javascript">
+  	var ini = new Audio('audio/inicio.mp3');
+  	ini.play();
+	</script>
+    <div class="site-wrapper">
+	    <div class="site-wrapper-inner">
+			<div class="container" style="background-color: #ffffff;  height: 600px;">
+				<div class="row">
+					<div class="col-md-3">
+						<img src="img\logo_brailletotext.png" id="logo_braille">
+					</div>
+					<div class="text-center col-md-5">
+						<h1 id="titulo">BRAILLE TO TEXT<br></h1>
+						<small id="subtitulo">SIMULADOR DE UNA M&Aacute;QUINA DE BRAILLE.</small>
+					</div>	
+					<div class="col-md-3">
+						<img src="img\logo_ucab.png" id="logo_ucab">			
+					</div>
+				</div>	
+				<hr>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="btn-group-vertical" style="width: 260px;font-family: Verdana;">
+							<a type="button" class="btn btn-default" style="text-align: left;"href="brailletotextb.html">
+								<img src="bootstrap\png\pencil.png" style="margin-right: 25px;">Editor</a>
+							<a type="button" class="btn btn-default" style="text-align: left;" href="quienessomos.html">
+								<img src="bootstrap\png\users.png" style="margin-right: 5px;"> ¿Qui&eacute;nes Somos?</a>
+							<a type="button" class="btn btn-default" style="text-align: left;" href="sistemabraille.html">
+								<img src="bootstrap\png\file.png" style="margin-right: 20px;"> Sistema Braille</a>
+							<a type="button" class="btn btn-default" style="text-align: left;" href="dispositivos.html">
+								<img src="bootstrap\png\desktop.png" style="margin-right: 13px;"> Dispositivos Braille</a>
+							<a type="button" class="btn btn-default" style="text-align: left;" href="manuales.html">
+								<img src="bootstrap\png\book.png" style="margin-right: 18px;"> Manuales</a>
+						</div>
+						<hr>
+						<div class="col-md-3" style="margin-left: 40px;">
+							<button type="button" id="punto1" class="btn-simulador" style="">1</button>
+							<button type="button" id="punto4" class="btn-simulador" style="position: absolute; margin-top: -52px; margin-left:60px; ">4</button>
+							<button type="button" id="punto2" class="btn-simulador" style="">2</button>
+							<button type="button" id="punto5" class="btn-simulador" style="position: absolute; margin-top: -52px; margin-left:60px;">5</button>
+							<button type="button" id="punto3" class="btn-simulador" style="">3</button>
+							<button type="button" id="punto6" class="btn-simulador" style="position: absolute; margin-top: -52px; margin-left:43px;">6</button>
+						</div>
+						<div>
+							<img id="puntos" src="img/puntos.png">
+						</div>
+					</div>
+					<div class="col-md-8" style="width:860px; margin-bottom:20px;">
+						<div class="row">
+						    <div class="btn-group btn-group-justified">
+						      <a class="btn btn-warning" role="button" id="boldn"><img class="icono" src="bootstrap\png\bold.png"></a>
+						      <a class="btn btn-warning" role="button" id="italicn"><img class="icono" src="bootstrap\png\italic.png"></a>
+						      <a class="btn btn-warning" role="button" id="underlinen"><img class="icono" src="bootstrap\png\underline.png"></a>
+						      <a class="btn btn-warning" role="button" id="alignl"><img class="icono" src="bootstrap\png\align_left.png"></a>
+						      <a class="btn btn-warning" role="button" id="alignc"><img class="icono" src="bootstrap\png\align_center.png"></a>
+						      <a class="btn btn-warning" role="button" id="alignj"><img class="icono" src="bootstrap\png\align_justify.png"></a>
+						      <a class="btn btn-warning" role="button" id="alignr"><img class="icono" src="bootstrap\png\align_right.png"></a>
+						      <a class="btn btn-warning" role="button" id="listar"><img class="icono" src="bootstrap\png\list.png"></a>
+						      <a class="btn btn-warning" role="button" id="guardar"><img class="icono" src="bootstrap\png\save.png"></a>
+						      <a class="btn btn-warning" role="button" id="cargar"><img class="icono" src="bootstrap\png\charge.png"></a>		
+						    </div>
+						</div>
+						<div class="row">
+							<div id="bloque" type="text"  style="font-size: 14pt; border: solid 1px #c3c3c3" disabled></div>   
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+</body>
+<script src="js\jquery-2.1.0.min.js"></script>
+<script src="js\brailletotext.js"></script>
+    <script src="bootstrap\dist\js\bootstrap.min.js"></script>
+    <script src="bootstrap\docs\assets\js\docs.min.js"></script>
+    <script src="js\move.min.js"></script>
+</html>
